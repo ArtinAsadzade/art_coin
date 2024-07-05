@@ -2,6 +2,7 @@ import { useNavigate, useRoutes } from "react-router-dom";
 import { routers } from "./router/routes";
 import { useContext, useEffect } from "react";
 import { IsMobileViewContext } from "./context/IsMobileViewContext";
+import UserTokensProvider from "./context/UserTokensContext";
 
 function App() {
   const routes = useRoutes(routers);
@@ -16,7 +17,11 @@ function App() {
     }
   }, [navigate, setIsMobile]);
 
-  return <>{routes}</>;
+  return (
+    <>
+      <UserTokensProvider>{routes}</UserTokensProvider>
+    </>
+  );
 }
 
 export default App;

@@ -2,12 +2,11 @@ import { useContext } from "react";
 import { IsMobileViewContext } from "../context/IsMobileViewContext";
 import { Navigate } from "react-router-dom";
 import { UserTokensContext } from "../context/UserTokensContext";
-import { useTapBilakhCoin } from "../utils";
+import Coin from "../components/Coin";
 
 export default function ComingSoon() {
   const { isMobile } = useContext(IsMobileViewContext);
   const { tokens } = useContext(UserTokensContext);
-  const tapBilakhCoin = useTapBilakhCoin();
 
   return (
     <>
@@ -17,9 +16,7 @@ export default function ComingSoon() {
             <p>{tokens}</p>
             <p>Bilakh</p>
           </div>
-          <div className="w-full flex justify-center p-5 items-center">
-            <img src="/logo.png" className="rounded-full cursor-pointer" alt="Bilakh Coin Logo" onClick={tapBilakhCoin} />
-          </div>
+          <Coin />
           <div className="font-bold text-secondary">
             <h1 className="text-2xl">Bilakh Coin Coming Soon!</h1>
             <p>

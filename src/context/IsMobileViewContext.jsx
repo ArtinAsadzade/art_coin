@@ -8,9 +8,21 @@ export default function IsMobileViewProvider({ children }) {
   useEffect(() => {
     const checkIfMobile = () => {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const isDesktop = /Windows|Linux|Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent);
+      const platform = navigator.platform;
 
-      setIsMobile(!isDesktop);
+      // Check for desktop OS
+      const isWindows = /Win(dows)?/.test(platform);
+      const isMac = /Mac(intosh|Intel|PPC|68K)/.test(platform);
+      const isLinux = /Linux/.test(platform);
+
+      // Check for mobile user agents
+      const isAndroid = /Android/.test(userAgent);
+      const isIOS = /iPhone|iPad|iPod/.test(userAgent);
+
+      const isDesktop = isWindows || isMac || isLinux;
+      const isMobile = isAndroid || isIOS;
+
+      setIsMobile(isMobile && !isDesktop);
     };
     checkIfMobile();
   }, []);

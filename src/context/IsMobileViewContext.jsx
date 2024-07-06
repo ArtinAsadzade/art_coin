@@ -7,13 +7,12 @@ export default function IsMobileViewProvider({ children }) {
 
   useEffect(() => {
     const checkIfMobile = () => {
-      const isMobile = window.matchMedia("(max-width: 640px)").matches;
-      setIsMobile(isMobile);
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isDesktop = /Windows|Linux|Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent);
+
+      setIsMobile(!isDesktop);
     };
     checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-
-    return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
   return <IsMobileViewContext.Provider value={{ isMobile, setIsMobile }}>{children}</IsMobileViewContext.Provider>;

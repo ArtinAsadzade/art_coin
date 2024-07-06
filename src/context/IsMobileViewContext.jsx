@@ -7,7 +7,7 @@ export default function IsMobileViewProvider({ children }) {
 
   useEffect(() => {
     const checkIfMobile = () => {
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const isMobile = window.matchMedia("(max-width: 640px)").matches;
       setIsMobile(isMobile);
     };
     checkIfMobile();

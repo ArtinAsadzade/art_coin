@@ -7,7 +7,7 @@ function App() {
   const routes = useRoutes(routers);
 
   useEffect(() => {
-    if (+localStorage.getItem("tokens") > 1000) {
+    if (+localStorage.getItem("tokens") > 10000) {
       localStorage.clear();
     }
   }, []);

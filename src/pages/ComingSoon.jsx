@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { IsMobileViewContext } from "../context/IsMobileViewContext";
 import { Navigate } from "react-router-dom";
-import { UserTokensContext } from "../context/UserTokensContext";
 import Coin from "../components/Coin";
+import Footer from "../components/Footer";
+import { UserTokensContext } from "../context/UserTokensContext";
 
 export default function ComingSoon() {
   const { isMobile } = useContext(IsMobileViewContext);
@@ -24,7 +25,7 @@ export default function ComingSoon() {
               opportunities.
             </p>
           </div>
-          <div className="absolute bottom-0 bg-secondary w-full p-2 text-primary font-bold text-center">Owned By Artin</div>
+          <Footer />
         </div>
       ) : (
         <Navigate to={"/JustMobileView"} />

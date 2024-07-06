@@ -7,11 +7,16 @@ export default function Coin() {
   const handleClick = (event) => {
     const image = event.currentTarget;
 
-    setTokens((prevTokens) => prevTokens + 1);
+    setTokens((prevTokens) => {
+      const newTokens = prevTokens + 1;
+      localStorage.setItem("tokens", newTokens);
+      return newTokens;
+    });
+
     image.classList.add("animate-shake");
     setTimeout(() => {
       image.classList.remove("animate-shake");
-    }, 500);
+    }, 100);
   };
 
   return (

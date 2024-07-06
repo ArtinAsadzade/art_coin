@@ -9,6 +9,9 @@ function App() {
   useEffect(() => {
     if (+localStorage.getItem("tokens") > 10000) {
       localStorage.clear();
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     }
   }, []);
 

@@ -4,5 +4,6 @@ import JustMobileView from "../pages/JustMobileView";
 
 export const routers = [
   { path: "/", element: <ComingSoon /> },
+  { path: "/testartcoinmain", element: <Home /> },
   { path: "/JustMobileView", element: <JustMobileView /> },
 ];

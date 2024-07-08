@@ -20,8 +20,10 @@ export default function Coin() {
   };
 
   return (
-    <div className="w-full flex justify-center p-10 items-center">
-      <img src="/logo.webp" className="rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" onClick={handleClick} />
-    </div>
+    <>
+      <div className="w-full flex justify-center p-10 items-center">
+        <img src="/logo.webp" className="rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" onClick={handleClick} />
+      </div>
+    </>
   );
 }

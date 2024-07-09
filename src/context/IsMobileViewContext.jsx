@@ -15,7 +15,7 @@ export default function IsMobileViewProvider({ children }) {
       const isBannedOS = bannedOSList.includes(osName);
 
       if (window.innerWidth > 576 || isBannedOS) {
-        setIsMobile(false);
+        setIsMobile(true);
       } else {
         setIsMobile(detectedMobile);
       }

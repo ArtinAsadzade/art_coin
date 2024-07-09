@@ -11,3 +11,19 @@ export const findRank = (tokens) => {
   }
   return null;
 };
+
+export const findUserEmail = (email, users) => {
+  const user = users.find((user) => user.email === email);
+  return user ? user.email : "";
+};
+
+export const findUserCode = (code, users) => {
+  const user = users.find((user) => user.code === code);
+  return user ? user.code : "";
+};
+
+export const getPinAsNumber = (pin) => {
+  const pinString = pin.join("");
+
+  return pinString;
+};

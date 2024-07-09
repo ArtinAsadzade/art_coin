@@ -1,15 +1,19 @@
 import { createContext, useState, useEffect } from "react";
+import { decrypted, encrypted } from "../utils";
 
 export const UserTokensContext = createContext();
 
 export const UserTokensProvider = ({ children }) => {
   const [tokens, setTokens] = useState(() => {
-    const savedTokens = localStorage.getItem("tokens");
-    return savedTokens ? parseInt(savedTokens, 10) : 0;
+    const data = decrypted("user");
+    return data && data.email ? parseInt(data.tokens, 10) || 0 : 0;
   });
 
   useEffect(() => {
-    localStorage.setItem("tokens", tokens);
+    const data = decrypted("user");
+    if (data && data.email) {
+      encrypted({ ...data, tokens }, "user");
+    }
   }, [tokens]);
 
   return <UserTokensContext.Provider value={{ tokens, setTokens }}>{children}</UserTokensContext.Provider>;

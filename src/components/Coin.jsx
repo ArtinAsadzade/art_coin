@@ -1,29 +1,36 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { UserTokensContext } from "../context/UserTokensContext";
+import { decrypted, encrypted } from "../utils";
 
 export default function Coin() {
   const { setTokens } = useContext(UserTokensContext);
+  const decryptedData = decrypted("user");
 
-  const handleClick = (event) => {
-    const image = event.currentTarget;
+  console.log(decryptedData);
 
-    setTokens((prevTokens) => {
-      const newTokens = prevTokens + 1;
-      localStorage.setItem("tokens", newTokens);
-      return newTokens;
-    });
+  const handleClick = useCallback(
+    (e) => {
+      const image = e.currentTarget;
 
-    image.classList.add("animate-shake");
-    setTimeout(() => {
-      image.classList.remove("animate-shake");
-    }, 100);
-  };
+      setTokens((prevTokens) => {
+        const newTokens = prevTokens + 1;
+        if (decryptedData.email) {
+          encrypted({ ...decryptedData, tokens: newTokens }, "user");
+        }
+        return newTokens;
+      });
+
+      image.classList.add("animate-shake");
+      setTimeout(() => {
+        image.classList.remove("animate-shake");
+      }, 100);
+    },
+    [decryptedData, setTokens]
+  );
 
   return (
-    <>
-      <div className="w-full flex justify-center p-10 items-center">
-        <img src="/logo.webp" className="rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" onClick={handleClick} />
-      </div>
-    </>
+    <div className="w-full flex justify-center p-10 items-center">
+      <img src="/logo.webp" className="rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" onClick={handleClick} />
+    </div>
   );
 }

@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import Footer from "../components/Footer";
-import { findUserCode, findUserEmail, getPinAsNumber } from "../utils";
+import { useCallback, useRef, useState } from "react";
+import { decrypted, encrypted, findUserHandler, getPinAsNumber } from "../utils";
 import { adminsData } from "../data/Data";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const decryptedData = decrypted("user");
   const [users] = useState(adminsData);
   const [step, setStep] = useState(1);
   const [value, setValue] = useState({
@@ -15,9 +15,8 @@ export default function Login() {
   const navigate = useNavigate();
 
   const inputRefs = useRef([]);
-  const findEmail = findUserEmail(value.email, users);
   const pinNumber = getPinAsNumber(value.pin);
-  const findCode = findUserCode(pinNumber, users);
+  const findUser = findUserHandler(value.email, pinNumber, users);
 
   const handleValueChanges = useCallback((e) => {
     const { name, value: inputValue } = e.target;
@@ -52,71 +51,82 @@ export default function Login() {
 
   const submitHandler = () => {
     if (step === 1) {
-      setStep(2);
+      if (value.email) {
+        setStep(2);
+      }
     } else if (step === 2) {
-      if (findEmail && findCode) {
-        localStorage.setItem("user", findEmail);
+      if (findUser.email && findUser.code) {
+        encrypted(findUser, "user");
         navigate("/home");
+        setValue({
+          email: "",
+          pin: ["", "", "", ""],
+        });
       }
     }
   };
 
   return (
-    <div className="w-full bg-primary h-svh flex justify-center items-center p-2">
-      <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
-        <div className="p-6 space-y-8">
-          <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
-          <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <div className="flex justify-between">
-                <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
-                  {step === 1 ? "Your email" : "Enter Code"}
-                </label>
-                <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
-                  Step: {step}
-                </label>
-              </div>
-              {step === 1 ? (
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-100 text-primary rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary"
-                  placeholder="name@company.com"
-                  required
-                  onChange={handleValueChanges}
-                  value={value.email}
-                />
-              ) : (
-                <div className="flex gap-5 justify-center mt-3">
-                  {value.pin.map((pinValue, index) => (
+    <>
+      {decryptedData ? (
+        <Navigate to={"/home"} />
+      ) : (
+        <div className="w-full bg-primary h-svh flex justify-center items-center">
+          <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
+            <div className="p-6 space-y-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
+              <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+                <div>
+                  <div className="flex justify-between">
+                    <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
+                      {step === 1 ? "Your email" : "Enter Code"}
+                    </label>
+                    <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
+                      Step: {step}
+                    </label>
+                  </div>
+                  {step === 1 ? (
                     <input
-                      key={index}
-                      type="text"
-                      name={`pin${index}`}
-                      className="block w-[38px] text-center bg-gray-100 p-3 rounded-md text-sm outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary disabled:opacity-50 disabled:pointer-events-none"
-                      value={pinValue}
-                      onChange={(e) => handleValueChanges(e, index)}
-                      onKeyDown={(e) => handleKeyDown(e, index)}
-                      ref={(el) => (inputRefs.current[index] = el)}
-                      maxLength={1}
-                      autoFocus={index === 0}
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="bg-gray-100 text-primary rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary"
+                      placeholder="name@company.com"
+                      required
+                      onChange={handleValueChanges}
+                      value={value.email}
                     />
-                  ))}
+                  ) : (
+                    <div className="flex gap-5 justify-center mt-3">
+                      {value.pin.map((pinValue, index) => (
+                        <input
+                          key={index}
+                          type="text"
+                          name={`pin${index}`}
+                          className="block w-[38px] text-center bg-gray-100 p-3 rounded-md text-sm outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary disabled:opacity-50 disabled:pointer-events-none"
+                          value={pinValue}
+                          onChange={(e) => handleValueChanges(e, index)}
+                          onKeyDown={(e) => handleKeyDown(e, index)}
+                          ref={(el) => (inputRefs.current[index] = el)}
+                          maxLength={1}
+                          autoFocus={index === 0}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
+                <button
+                  type="submit"
+                  className="w-full text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-secondary"
+                  onClick={submitHandler}
+                >
+                  {step === 1 ? "Next" : "Login"}
+                </button>
+              </form>
             </div>
-            <button
-              type="submit"
-              className="w-full text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:opacity-80 bg-secondary"
-              onClick={submitHandler}
-            >
-              {step === 1 ? "Next" : "Login"}
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+    </>
   );
 }

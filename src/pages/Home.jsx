@@ -1,5 +1,4 @@
 import Coin from "../components/Coin";
-import Footer from "../components/Footer";
 import NavContainer from "../components/Nav/NavContainer";
 import Tokens from "../components/Tokens";
 
@@ -10,7 +9,6 @@ export default function Home() {
         <Tokens />
         <Coin />
         <NavContainer />
-        <Footer />
       </div>
     </>
   );

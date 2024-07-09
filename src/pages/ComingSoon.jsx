@@ -21,7 +21,7 @@ export default function ComingSoon() {
             Exciting news! Art Coin is launching soon – a fun and engaging airdrop project where you can win Art Coins and enjoy unique opportunities.
           </p>
         </div>
-        <Link to={"/login"} className="w-full bg-secondary rounded-lg p-3 text-primary font-bold text-center cursor-pointer">
+        <Link to={"/login"} className="w-full bg-secondary rounded-lg p-3 text-primary font-bold text-center cursor-pointer mb-10">
           what is happening?
         </Link>
         <Footer />

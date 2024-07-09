@@ -22,14 +22,7 @@ export const decrypted = (key) => {
 };
 
 export const findRank = (tokens) => {
-  const [ranks] = useState(ranksData);
-
-  for (let rank of ranks) {
-    if (tokens >= rank.start && tokens <= rank.end) {
-      return rank;
-    }
-  }
-  return null;
+  return ranksData.find((rank) => rank.start <= +tokens);
 };
 
 export const findUserHandler = (email, code, users) => {

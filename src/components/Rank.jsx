@@ -3,6 +3,7 @@ import { findRank } from "../utils";
 
 export default function Rank({ tokens }) {
   const rank = findRank(tokens);
+  console.log(rank);
 
   return (
     <div className={`text-secondary font-bold flex items-center gap-2 my-3 cursor-pointer`}>

@@ -11,12 +11,10 @@ export const navData = [
 ];
 
 export const ranksData = [
-  { id: 1, title: "Gold", start: 0, end: 100 },
-  { id: 2, title: "Silver", start: 101, end: 200 },
-  { id: 3, title: "Diamond", start: 201, end: 300 },
-  { id: 4, title: "Star", start: 301, end: 400 },
-  { id: 4, title: "Bokon nane khomeyni", start: 1001, end: 2000 },
-  { id: 4, title: "Bokon nane khamenei", start: 2001, end: 3000 },
+  { id: 1, title: "Star", start: 400 },
+  { id: 2, title: "Diamond", start: 200 },
+  { id: 3, title: "Silver", start: 100 },
+  { id: 4, title: "Gold", start: 0 },
 ];
 
 export const adminsData = [

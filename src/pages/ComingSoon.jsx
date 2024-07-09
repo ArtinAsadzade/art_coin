@@ -10,7 +10,7 @@ export default function ComingSoon() {
   return (
     <>
       <div className="w-full h-svh flex flex-col items-center justify-between p-5 bg-primary relative select-none">
-        <div className="bg-secondary py-2 w-1/2 text-center rounded-lg mt-10 text-2xl text-primary font-bold flex justify-between px-5">
+        <div className="bg-secondary py-2 w-1/2 text-center rounded-lg text-2xl text-primary font-bold flex justify-between px-5">
           <p>{tokens}</p>
           <p>Coin</p>
         </div>

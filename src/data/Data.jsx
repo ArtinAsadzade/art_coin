@@ -16,3 +16,8 @@ export const ranksData = [
   { id: 3, title: "Diamond", start: 201, end: 300 },
   { id: 4, title: "Start", start: 301, end: 400 },
 ];
+
+export const adminsData = [
+  { id: 1, email: "artin@gmail.com", code: "0820" },
+  { id: 2, email: "amir@gmail.com", code: "0820" },
+];

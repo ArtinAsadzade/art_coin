@@ -1,13 +1,13 @@
-import axios from "axios";
 import Coin from "../components/Coin";
 import NavContainer from "../components/Nav/NavContainer";
 import Tokens from "../components/Tokens";
-import { useEffect } from "react";
 
 export default function Home() {
   // useEffect(() => {
   //   axios
-  //     .get("http://localhost:3000/api/users")
+  //     .post("http://localhost:3000/api/send-verification-code", {
+  //       email: "artinfortnit@gmail.com",
+  //     })
   //     .then((response) => {
   //       console.log("User Data:", response.data);
   //     })

@@ -13,11 +13,12 @@ export default function IsMobileViewProvider({ children }) {
     const checkIfMobile = () => {
       const detectedMobile = detectMobile;
       const isBannedOS = bannedOSList.includes(osName);
-
-      if (window.innerWidth > 576 || isBannedOS) {
-        setIsMobile(true);
+      // isBannedOS
+      if (window.innerWidth > 576) {
+        setIsMobile(false);
       } else {
-        setIsMobile(detectedMobile);
+        // setIsMobile(detectedMobile);
+        setIsMobile(true);
       }
     };
 

@@ -57,7 +57,7 @@ export default function Login() {
         setLoading(true);
         console.log("ok");
         axios
-          .post("https://artcoinback.liara.run/api/send-verification-code", {
+          .post("http://185.208.181.160:3000/api/send-verification-code", {
             email: value.email,
           })
           .then((response) => {
@@ -86,7 +86,7 @@ export default function Login() {
       if (pinNumber.length === 4 && value.email) {
         setLoading(true);
         axios
-          .post("https://artcoinback.liara.run/api/verify-email", {
+          .post("http://185.208.181.160:3000/api/verify-email", {
             email: value.email,
             verificationCode: pinNumber,
           })

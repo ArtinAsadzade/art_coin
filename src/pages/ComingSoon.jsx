@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Coin from "../components/Coin";
 import Footer from "../components/Footer";
@@ -6,6 +6,19 @@ import { UserTokensContext } from "../context/UserTokensContext";
 
 export default function ComingSoon() {
   const { tokens } = useContext(UserTokensContext);
+
+  useEffect(() => {
+    fetch("https://art-coin-back.vercel.app/api/send-verification-code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: "example@example.com" }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  });
 
   return (
     <>

@@ -4,7 +4,8 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import useFetch from "../hooks/useFetch";
 import Toast from "../components/Toast";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftCircleIcon, ArrowLeftIcon, ArrowRightIcon, CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import CustomBtn from "../helper/CustomBtn";
 
 export default function Login() {
   const decryptedData = decrypted("user");
@@ -54,28 +55,27 @@ export default function Login() {
     if (step === 1) {
       if (value.email) {
         setLoading(true);
+        console.log("ok");
         axios
-          .post("http://localhost:3000/api/send-verification-code", {
+          .post("https://artcoinback.liara.run/api/send-verification-code", {
             email: value.email,
           })
           .then((response) => {
-            (response.data && setData(response.data)) ||
+            (response.data && setStep(2)) ||
               setLoading(false) ||
-              setStep(2) ||
               setToastData({
                 icon: <CheckIcon className="w-6 text-green-500" />,
                 msg: response.data.message,
               });
           })
           .catch((error) => {
-            setErr(error) ||
+            setErr(error.response.data) ||
               setLoading(false) ||
               setToastData({
                 icon: <XMarkIcon className="w-6 text-red-500" />,
-                msg: error,
+                msg: error.response.data,
               });
-          })
-          .finally(setLoading(false));
+          });
       } else {
         setToastData({
           icon: <XMarkIcon className="w-6 text-red-500" />,
@@ -84,31 +84,30 @@ export default function Login() {
       }
     } else if (step === 2) {
       if (pinNumber.length === 4 && value.email) {
+        setLoading(true);
         axios
-          .post("http://localhost:3000/api/verify-email", {
+          .post("https://artcoinback.liara.run/api/verify-email", {
             email: value.email,
             verificationCode: pinNumber,
           })
           .then((response) => {
             if (response) {
-              setData(response.data);
+              setData(response.data.user);
               setLoading(false);
               setToastData({
                 icon: <CheckIcon className="w-6 text-green-500" />,
                 msg: response.data.message,
               });
             }
-            console.log(response);
           })
           .catch((error) => {
-            setErr(error) ||
+            setErr(error.response.data) ||
               setLoading(false) ||
               setToastData({
                 icon: <XMarkIcon className="w-6 text-red-500" />,
-                msg: error,
+                msg: error.response.data,
               });
-          })
-          .finally(setLoading(false));
+          });
       } else {
         setToastData({
           icon: <XMarkIcon className="w-6 text-red-500" />,
@@ -126,8 +125,11 @@ export default function Login() {
         <>
           <Toast icon={toastData.icon} msg={toastData.msg} />
           <div className="w-full bg-primary h-svh flex justify-center items-center">
-            <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
-              <div className="p-6 space-y-8">
+            <div className="w-full bg-white rounded-lg shadow border relative">
+              {step === 2 && (
+                <ArrowLeftCircleIcon className="text-secondary w-10 p-1 absolute top-3 left-3 cursor-pointer" onClick={() => setStep(1)} />
+              )}
+              <div className="p-6 space-y-8 mt-6">
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
                 <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
                   <div>
@@ -178,13 +180,9 @@ export default function Login() {
                       </div>
                     )}
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-secondary"
-                    onClick={submitHandler}
-                  >
+                  <CustomBtn loading={loading} onClick={submitHandler}>
                     {step === 1 ? "Next" : "Login"}
-                  </button>
+                  </CustomBtn>
                 </form>
               </div>
             </div>

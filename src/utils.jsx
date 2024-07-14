@@ -35,3 +35,10 @@ export const getPinAsNumber = (pin) => {
 
   return pinString;
 };
+
+export const logOutHandler = () => {
+  localStorage.clear();
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
+};

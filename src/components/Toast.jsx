@@ -1,10 +1,8 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-export default function Toast({ icon, msg }) {
-  const [show, setShow] = useState(false);
-
+export default function Toast({ icon, msg, show, setShow }) {
   const hideToast = () => {
     setShow(false);
   };
@@ -16,12 +14,6 @@ export default function Toast({ icon, msg }) {
       }, 5000);
     }
   }, [msg, setShow, show]);
-
-  useEffect(() => {
-    if (msg) {
-      setShow(true);
-    }
-  }, [msg]);
 
   return createPortal(
     <div

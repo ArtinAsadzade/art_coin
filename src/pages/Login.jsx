@@ -27,7 +27,7 @@ export default function Login() {
       const index = parseInt(name.replace("pin", ""), 10);
       setValue((prevValue) => {
         const newPin = [...prevValue.pin];
-        newPin[index] = inputValue;
+        newPin[index] = inputValue.slice(0, 1);
         return {
           ...prevValue,
           pin: newPin,

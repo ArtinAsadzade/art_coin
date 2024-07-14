@@ -143,7 +143,7 @@ export default function Login() {
                       </div>
                       {step === 2 ? (
                         <>
-                          <label htmlFor="email" className="mb-2 text-sm font-bold text-secondary">
+                          <label htmlFor="email" className="mb-2 text-lg font-bold text-secondary">
                             {value.email}
                           </label>
                         </>

@@ -121,7 +121,7 @@ export default function Login() {
       <Toast icon={toastData.icon} msg={toastData.msg} />
       <div className="w-full bg-primary h-svh flex justify-center items-center">
         <div className="w-full bg-white rounded-lg shadow border relative">
-          {step === 2 && <ArrowLeftCircleIcon className="text-secondary w-10 p-1 absolute top-3 left-3 cursor-pointer" onClick={() => setStep(1)} />}
+          {step === 2 && <ArrowLeftCircleIcon className="text-secondary w-12 p-1 absolute top-1 left-1 cursor-pointer" onClick={() => setStep(1)} />}
           <div className="p-6 space-y-8 mt-6">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
             <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>

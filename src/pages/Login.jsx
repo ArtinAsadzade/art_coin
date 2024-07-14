@@ -167,7 +167,7 @@ export default function Login() {
                         {value.pin.map((pinValue, index) => (
                           <input
                             key={index}
-                            type="text"
+                            type="number"
                             name={`pin${index}`}
                             className="block w-[38px] text-center bg-gray-100 p-3 rounded-md text-sm outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary disabled:opacity-50 disabled:pointer-events-none"
                             value={pinValue}

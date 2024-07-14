@@ -4,13 +4,19 @@ import { createPortal } from "react-dom";
 
 export default function Toast({ icon, msg, show, setShow }) {
   const hideToast = () => {
-    setShow(false);
+    setShow((prev) => ({
+      ...prev,
+      show: false,
+    }));
   };
 
   useEffect(() => {
     if (show) {
       setTimeout(() => {
-        setShow(false);
+        setShow((prev) => ({
+          ...prev,
+          show: false,
+        }));
       }, 5000);
     }
   }, [msg, setShow, show]);

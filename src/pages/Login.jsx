@@ -10,7 +10,7 @@ import CustomBtn from "../helper/CustomBtn";
 export default function Login() {
   const decryptedData = decrypted("account");
   const [step, setStep] = useState(1);
-  const [toastData, setToastData] = useState({ msg: "", icon: null });
+  const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const [value, setValue] = useState({
     email: "",
     pin: ["", "", "", ""],
@@ -65,6 +65,7 @@ export default function Login() {
               setToastData({
                 icon: <CheckIcon className="w-6 text-green-500" />,
                 msg: response.data.message,
+                show: true,
               });
           })
           .catch((error) => {
@@ -73,12 +74,14 @@ export default function Login() {
               setToastData({
                 icon: <XMarkIcon className="w-6 text-red-500" />,
                 msg: error.response.data,
+                show: true,
               });
           });
       } else {
         setToastData({
           icon: <XMarkIcon className="w-6 text-red-500" />,
           msg: "Please fill in the field below",
+          show: true,
         });
       }
     } else if (step === 2) {
@@ -96,6 +99,7 @@ export default function Login() {
               setToastData({
                 icon: <CheckIcon className="w-6 text-green-500" />,
                 msg: response.data.message,
+                show: true,
               });
               encrypted(response.data.user, "account");
             }
@@ -106,12 +110,14 @@ export default function Login() {
               setToastData({
                 icon: <XMarkIcon className="w-6 text-red-500" />,
                 msg: error.response.data,
+                show: true,
               });
           });
       } else {
         setToastData({
           icon: <XMarkIcon className="w-6 text-red-500" />,
           msg: "Please fill in the field below",
+          show: true,
         });
       }
     }
@@ -123,7 +129,7 @@ export default function Login() {
         <Navigate to={"/"} />
       ) : (
         <>
-          <Toast icon={toastData.icon} msg={toastData.msg} />
+          <Toast icon={toastData.icon} msg={toastData.msg} show={toastData.show} setShow={setToastData} />
           <div className="w-full bg-primary h-svh flex justify-center items-center">
             <div className="w-full bg-white rounded-lg shadow border relative">
               {step === 2 && (

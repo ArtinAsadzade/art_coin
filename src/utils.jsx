@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ranksData } from "./data/Data";
 import CryptoJS from "crypto-js";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 export const encrypted = (data, key) => {
   const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), import.meta.env.VITE_SECRET_KEY).toString();

@@ -169,7 +169,7 @@ export default function Login() {
                             key={index}
                             type="number"
                             name={`pin${index}`}
-                            className="block w-[38px] text-center bg-gray-100 p-3 rounded-md text-sm outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary disabled:opacity-50 disabled:pointer-events-none"
+                            className="block w-[45px] h-[45px] text-center bg-gray-100 text-secondary p-3 rounded-md text-2xl font-bold outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary disabled:opacity-50 disabled:pointer-events-none"
                             value={pinValue}
                             onChange={(e) => handleValueChanges(e, index)}
                             onKeyDown={(e) => handleKeyDown(e, index)}

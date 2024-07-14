@@ -55,9 +55,8 @@ export default function Login() {
     if (step === 1) {
       if (value.email) {
         setLoading(true);
-        console.log("ok");
         axios
-          .post("https://artcoinback.liara.run/api/send-verification-code", {
+          .post("https://artcoinback.liara.run/api/mailer/send-verification-code", {
             email: value.email,
           })
           .then((response) => {
@@ -86,7 +85,7 @@ export default function Login() {
       if (pinNumber.length === 4 && value.email) {
         setLoading(true);
         axios
-          .post("https://artcoinback.liara.run/api/verify-email", {
+          .post("https://artcoinback.liara.run/api/mailer/verify-email", {
             email: value.email,
             verificationCode: pinNumber,
           })
@@ -133,22 +132,24 @@ export default function Login() {
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
                 <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
                   <div>
-                    <div className="flex justify-between">
-                      <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
-                        {step === 1 ? "Your email" : "Enter Code"}
-                      </label>
+                    <div className="flex flex-col items-center">
+                      <div className="flex w-full flex-1 justify-between">
+                        <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
+                          {step === 1 ? "Your email" : "Enter Code"}
+                        </label>
+                        <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
+                          Step: {step}
+                        </label>
+                      </div>
                       {step === 2 ? (
                         <>
-                          <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
+                          <label htmlFor="email" className="mb-2 text-sm font-bold text-secondary">
                             {value.email}
                           </label>
                         </>
                       ) : (
                         <></>
                       )}
-                      <label htmlFor="email" className="mb-2 text-sm font-bold text-primary">
-                        Step: {step}
-                      </label>
                     </div>
                     {step === 1 ? (
                       <input

@@ -5,11 +5,11 @@ import { UserTokensContext } from "../context/UserTokensContext";
 import { decrypted, formatNumber, getUserData, logOutHandler } from "../utils";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import Toast from "../components/Toast";
+import Tokens from "../components/Tokens";
 
 export default function ComingSoon() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const decryptedData = decrypted("account");
-  const { tokens } = useContext(UserTokensContext);
 
   return (
     <>
@@ -22,11 +22,7 @@ export default function ComingSoon() {
         ) : (
           <></>
         )}
-
-        <div className="py-2 w-full text-center rounded-lg text-5xl text-secondary font-bold flex items-center justify-center gap-3 px-4">
-          <img className="w-[50px] mt-3 object-cover" src="/logo.webp" alt="" />
-          <p>{formatNumber(tokens)}</p>
-        </div>
+        <Tokens />
         <Coin />
         <div className="font-bold text-secondary">
           <h1 className="text-2xl">Art Coin Coming Soon!</h1>

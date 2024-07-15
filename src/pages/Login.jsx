@@ -101,7 +101,7 @@ export default function Login() {
                 msg: response.data.message,
                 show: true,
               });
-              encrypted(response.data.user, "account");
+              encrypted(response.data.user.email, "userEmail");
             }
           })
           .catch((error) => {

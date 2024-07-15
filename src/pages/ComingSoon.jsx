@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Coin from "../components/Coin";
 import { UserTokensContext } from "../context/UserTokensContext";
-import { decrypted, logOutHandler } from "../utils";
+import { decrypted, getUserData, logOutHandler } from "../utils";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import Toast from "../components/Toast";
 

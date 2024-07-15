@@ -1,7 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
 import { ranksData } from "./data/Data";
 import CryptoJS from "crypto-js";
-import { CheckIcon } from "@heroicons/react/24/outline";
 
 export const encrypted = (data, key) => {
   const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), import.meta.env.VITE_SECRET_KEY).toString();
@@ -42,4 +41,17 @@ export const logOutHandler = () => {
   setTimeout(() => {
     location.reload();
   }, 1000);
+};
+
+export const getUserData = () => {
+  const decryptedData = decrypted("userEmail");
+  if (decryptedData) {
+    axios
+      .post("https://artcoinback.liara.run/api/users/by-email", {
+        email: decryptedData,
+      })
+      .then((response) => {
+        encrypted(response.data, "account");
+      });
+  }
 };

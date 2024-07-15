@@ -52,6 +52,21 @@ export const getUserData = () => {
       })
       .then((response) => {
         encrypted(response.data, "account");
+      })
+      .catch((err) => {
+        logOutHandler();
       });
+  }
+};
+
+export const formatNumber = (number) => {
+  if (number >= 1000000000) {
+    return `${Math.floor(number / 1000000000)}.${Math.floor((number % 1000000000) / 1000000)}b`;
+  } else if (number >= 1000000) {
+    return `${Math.floor(number / 1000000)}.${Math.floor((number % 1000000) / 1000)}m`;
+  } else if (number >= 1000) {
+    return `${Math.floor(number / 1000)}.${Math.floor(number % 1000)}k`;
+  } else {
+    return number.toString();
   }
 };

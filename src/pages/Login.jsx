@@ -8,7 +8,7 @@ import { ArrowLeftCircleIcon, CheckIcon, XMarkIcon } from "@heroicons/react/24/o
 import CustomBtn from "../helper/CustomBtn";
 
 export default function Login() {
-  const decryptedData = decrypted("account");
+  const decryptedData = decrypted("userEmail");
   const [step, setStep] = useState(1);
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const [value, setValue] = useState({

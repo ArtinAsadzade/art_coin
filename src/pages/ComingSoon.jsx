@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Coin from "../components/Coin";
 import { UserTokensContext } from "../context/UserTokensContext";
-import { decrypted, getUserData, logOutHandler } from "../utils";
+import { decrypted, formatNumber, getUserData, logOutHandler } from "../utils";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import Toast from "../components/Toast";
 
@@ -23,9 +23,9 @@ export default function ComingSoon() {
           <></>
         )}
 
-        <div className="bg-secondary py-2 w-1/2 text-center rounded-lg text-2xl text-primary font-bold flex items-center justify-between px-4">
-          <p>{tokens}</p>
-          <img className="w-7 h-7 object-cover" src="/logo.webp" alt="" />
+        <div className="py-2 w-full text-center rounded-lg text-5xl text-secondary font-bold flex items-center justify-center gap-3 px-4">
+          <img className="w-[50px] mt-3 object-cover" src="/logo.webp" alt="" />
+          <p>{formatNumber(tokens)}</p>
         </div>
         <Coin />
         <div className="font-bold text-secondary">

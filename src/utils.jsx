@@ -60,12 +60,14 @@ export const getUserData = () => {
 };
 
 export const formatNumber = (number) => {
-  if (number >= 1000000000) {
-    return `${Math.floor(number / 1000000000)}.${Math.floor((number % 1000000000) / 1000000)}b`;
-  } else if (number >= 1000000) {
-    return `${Math.floor(number / 1000000)}.${Math.floor((number % 1000000) / 1000)}m`;
-  } else if (number >= 1000) {
-    return `${Math.floor(number / 1000)}.${Math.floor(number % 1000)}k`;
+  if (number >= 1e12) {
+    return `${Math.floor(number / 1e12)}.${Math.floor((number % 1e12) / 1e9)}t`;
+  } else if (number >= 1e9) {
+    return `${Math.floor(number / 1e9)}.${Math.floor((number % 1e9) / 1e6)}b`;
+  } else if (number >= 1e6) {
+    return `${Math.floor(number / 1e6)}.${Math.floor((number % 1e6) / 1e3)}m`;
+  } else if (number >= 1e3) {
+    return `${Math.floor(number / 1e3)}.${Math.floor(number % 1e3)}k`;
   } else {
     return number.toString();
   }

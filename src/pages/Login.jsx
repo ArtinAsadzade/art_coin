@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { decrypted, encrypted, getPinAsNumber } from "../utils";
+import { decrypted, encrypted, getPinAsNumber, getUserData } from "../utils";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import useFetch from "../hooks/useFetch";
@@ -102,6 +102,7 @@ export default function Login() {
                 show: true,
               });
               encrypted(response.data.user.email, "userEmail");
+              getUserData();
             }
           })
           .catch((error) => {

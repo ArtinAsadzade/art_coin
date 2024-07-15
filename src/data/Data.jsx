@@ -11,14 +11,10 @@ export const navData = [
 ];
 
 export const ranksData = [
-  { id: 1, title: "bokon khomeyni", start: 1000 },
+  { id: 1, title: "Owner", start: 1000000000000 },
+  { id: 6, title: "Super Star", start: 100000 },
   { id: 5, title: "Star", start: 400 },
   { id: 2, title: "Diamond", start: 200 },
   { id: 3, title: "Silver", start: 100 },
   { id: 4, title: "Gold", start: 0 },
-];
-
-export const adminsData = [
-  { id: 1, email: "artin@gmail.com", code: "0820", tokens: 12345666 },
-  { id: 2, email: "amir@gmail.com", code: "0820", tokens: 200 },
 ];

@@ -44,18 +44,16 @@ export const logOutHandler = () => {
 };
 
 export const getUserData = () => {
-  const decryptedData = decrypted("userEmail");
-  if (decryptedData) {
+  const token = decrypted("token");
+  if (token) {
     axios
-      .post("https://artcoinback.liara.run/api/users/by-email", {
-        email: decryptedData,
+      .post(`${import.meta.env.VITE_API}api/users/by-email`, {
+        email: token,
       })
       .then((response) => {
-        encrypted(response.data, "account");
+        encrypted(response.data, "token");
       })
-      .catch((err) => {
-        logOutHandler();
-      });
+      .catch(logOutHandler());
   }
 };
 

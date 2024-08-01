@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import Rank from "./Rank";
-import { UserTokensContext } from "../context/UserTokensContext";
 import { formatNumber } from "../utils";
 import { UserAllTokensContext } from "../context/UserAllTokensContext";
 
 export default function Tokens() {
-  const { tokens } = useContext(UserTokensContext);
   const { allTokens } = useContext(UserAllTokensContext);
 
   return (
@@ -14,7 +12,7 @@ export default function Tokens() {
         <img className="w-[50px] mt-2 object-cover" src="/logo.webp" alt="" />
         <p>{formatNumber(allTokens)}</p>
       </div>
-      <Rank tokens={tokens} />
+      <Rank tokens={allTokens} />
     </div>
   );
 }

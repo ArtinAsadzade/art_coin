@@ -1,35 +1,41 @@
-import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import Coin from "../components/Coin";
-import { decrypted } from "../utils";
-import Toast from "../components/Toast";
-import Tokens from "../components/Tokens";
-import { home_url } from "../router/Urls";
+import { useCallback } from "react";
+import { Link } from "react-router-dom";
+import { login_url } from "../router/Urls";
+import { decrypted, nameTranslator } from "../utils";
 
 export default function ComingSoon() {
-  const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const token = decrypted("token");
+  const handleClick = useCallback((e) => {
+    const image = e.currentTarget;
+
+    image.classList.add("animate-shake");
+    setTimeout(() => {
+      image.classList.remove("animate-shake");
+    }, 100);
+  }, []);
+
   return (
-    <>
-      <Toast icon={toastData.icon} msg={toastData.msg} show={toastData.show} setShow={setToastData} />
-      {token ? (
-        <Navigate to={home_url} />
-      ) : (
-        <div className="w-full h-svh flex flex-col gap-3 items-center justify-center p-5 bg-primary relative select-none">
-          <Tokens />
-          <Coin />
-          <div className="font-bold text-secondary">
-            <h1 className="text-2xl">Art Coin Coming Soon!</h1>
-            <p>
-              Exciting news! Art Coin is launching soon – a fun and engaging airdrop project where you can win Art Coins and enjoy unique
-              opportunities.
-            </p>
-          </div>
-          <Link to={"/login"} className="w-full bg-secondary rounded-lg p-3 text-primary font-bold text-center cursor-pointer mb-10">
-            Login To Your account
-          </Link>
+    <div className="w-full h-svh flex flex-col">
+      <div className="flex-1 flex flex-col gap-5 items-center justify-evenly p-5 bg-primary relative select-none">
+        <div className="w-full flex justify-center px-10 py-5 items-center" onClick={handleClick}>
+          <img src="/logo.webp" className="max-w-72 rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" />
         </div>
-      )}
-    </>
+        <div className="font-bold text-secondary">
+          <h1 className="text-2xl">Art Coin Coming Soon!</h1>
+          <p>
+            Exciting news! Art Coin is launching soon – a fun and engaging airdrop project where you can win Art Coins and enjoy unique opportunities.
+          </p>
+        </div>
+        {token ? (
+          <div className="w-full bg-secondary rounded-lg p-3 text-primary font-bold flex items-center justify-center gap-2">
+            Welcome <span className="border-b border-primary uppercase">{nameTranslator(token)}</span>
+          </div>
+        ) : (
+          <Link to={login_url} className="w-full bg-secondary rounded-lg p-3 text-primary font-bold text-center cursor-pointer">
+            Now Create Account
+          </Link>
+        )}
+      </div>
+    </div>
   );
 }

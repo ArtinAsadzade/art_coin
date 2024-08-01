@@ -1,9 +1,11 @@
-import axios from "axios";
 import { ranksData } from "./data/Data";
 import CryptoJS from "crypto-js";
+import sha256 from "crypto-js/sha256";
 
 export const encrypted = (data, key) => {
-  const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), import.meta.env.VITE_SECRET_KEY).toString();
+  const jsonData = JSON.stringify(data);
+  const hash = sha256(jsonData).toString();
+  const encryptedData = CryptoJS.AES.encrypt(JSON.stringify({ data: jsonData, hash }), import.meta.env.VITE_SECRET_KEY).toString();
   localStorage.setItem(key, encryptedData);
 };
 
@@ -12,13 +14,24 @@ export const decrypted = (key) => {
   if (encryptedData) {
     try {
       const bytes = CryptoJS.AES.decrypt(encryptedData, import.meta.env.VITE_SECRET_KEY);
-      return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+      // Check if the hash matches
+      const dataHash = sha256(decryptedData.data).toString();
+      if (dataHash !== decryptedData.hash) {
+        throw new Error("Data integrity check failed");
+      }
+
+      return JSON.parse(decryptedData.data);
     } catch (error) {
+      console.error("Error decrypting data:", error);
       localStorage.clear();
       location.reload();
       return "";
     }
-  } else return "";
+  } else {
+    return "";
+  }
 };
 
 export const findRank = (tokens) => {
@@ -43,20 +56,6 @@ export const logOutHandler = () => {
   }, 1000);
 };
 
-export const getUserData = () => {
-  const token = decrypted("token");
-  if (token) {
-    axios
-      .post(`${import.meta.env.VITE_API}api/users/by-email`, {
-        email: token,
-      })
-      .then((response) => {
-        encrypted(response.data, "token");
-      })
-      .catch(logOutHandler());
-  }
-};
-
 export const formatNumber = (number) => {
   if (number >= 1e12) {
     return `${Math.floor(number / 1e12)}.${Math.floor((number % 1e12) / 1e9)}t`;
@@ -69,4 +68,12 @@ export const formatNumber = (number) => {
   } else {
     return number.toString();
   }
+};
+
+export const nameTranslator = (input) => {
+  const atIndex = input.indexOf("@");
+  if (atIndex !== -1) {
+    return input.substring(0, atIndex);
+  }
+  return input;
 };

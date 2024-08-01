@@ -6,10 +6,9 @@ import Toast from "../components/Toast";
 import { ArrowLeftCircleIcon, CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import CustomBtn from "../helper/CustomBtn";
 import { Navigate } from "react-router-dom";
-import { home_url } from "../router/Urls";
+import { coming_soon_url } from "../router/Urls";
 
 export default function Login() {
-  const token = decrypted("token");
   const [step, setStep] = useState(1);
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const [value, setValue] = useState({
@@ -17,6 +16,8 @@ export default function Login() {
     pin: ["", "", "", ""],
   });
   const { loading, setLoading } = useFetch();
+
+  const token = decrypted("token");
 
   const inputRefs = useRef([]);
   const pinNumber = getPinAsNumber(value.pin);
@@ -46,6 +47,21 @@ export default function Login() {
     }
   }, []);
 
+  const handlePaste = useCallback((e) => {
+    const pasteData = e.clipboardData.getData("text");
+    if (/^\d{4}$/.test(pasteData)) {
+      setValue((prevValue) => {
+        const newPin = pasteData.split("").map((digit, index) => digit);
+        return {
+          ...prevValue,
+          pin: newPin,
+        };
+      });
+      inputRefs.current[3].focus();
+      e.preventDefault();
+    }
+  }, []);
+
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && index > 0 && value.pin[index] === "") {
       inputRefs.current[index - 1].focus();
@@ -57,7 +73,7 @@ export default function Login() {
       if (value.email) {
         setLoading(true);
         axios
-          .post("https://artcoinback.liara.run/api/mailer/send-verification-code", {
+          .post(`${import.meta.env.VITE_API}api/mailer/send-verification-code`, {
             email: value.email,
           })
           .then((response) => {
@@ -90,7 +106,7 @@ export default function Login() {
       if (pinNumber.length === 4 && value.email) {
         setLoading(true);
         axios
-          .post("https://artcoinback.liara.run/api/mailer/verify-email", {
+          .post(`${import.meta.env.VITE_API}api/mailer/verify-email`, {
             email: value.email,
             verificationCode: pinNumber,
           })
@@ -127,7 +143,7 @@ export default function Login() {
     <>
       <Toast icon={toastData.icon} msg={toastData.msg} show={toastData.show} setShow={setToastData} />
       {token ? (
-        <Navigate to={home_url} />
+        <Navigate to={coming_soon_url} />
       ) : (
         <div className="w-full bg-primary h-svh flex justify-center items-center">
           <div className="w-full bg-white rounded-lg shadow border relative">
@@ -179,6 +195,7 @@ export default function Login() {
                           value={pinValue}
                           onChange={(e) => handleValueChanges(e, index)}
                           onKeyDown={(e) => handleKeyDown(e, index)}
+                          onPaste={handlePaste}
                           ref={(el) => (inputRefs.current[index] = el)}
                           maxLength={1}
                           autoFocus={index === 0}

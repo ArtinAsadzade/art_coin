@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { IsMobileViewContext } from "../context/IsMobileViewContext";
+import { coming_soon_url } from "../router/Urls";
 
 export default function JustMobileView() {
   const { isMobile } = useContext(IsMobileViewContext);
   return (
     <>
       {isMobile ? (
-        <Navigate to={"/"} />
+        <Navigate to={coming_soon_url} />
       ) : (
         <div className="w-full h-svh bg-primary text-secondary flex items-center justify-center">
           <div className="text-center p-6 bg-white border border-gray-300 rounded-lg shadow-lg">

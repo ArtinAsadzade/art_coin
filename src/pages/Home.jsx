@@ -6,23 +6,24 @@ import StatusBar from "../components/StatusBar";
 import Tokens from "../components/Tokens";
 import { decrypted } from "../utils";
 import axios from "axios";
-import { UserAllTokensContext } from "../context/UserAllTokensContext";
+import { UserAllDataContext } from "../context/UserAllDataContext";
 import useFetch from "../hooks/useFetch";
 import Loading from "../components/Loading";
 
 export default function Home() {
   const { loading, setLoading } = useFetch();
-  const { setAllTokens } = useContext(UserAllTokensContext);
+  const { setAllTokens, setTokenLimit } = useContext(UserAllDataContext);
 
   const email = decrypted("token");
 
   useEffect(() => {
     setLoading(true);
     axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email }).then((res) => {
-      setAllTokens(res.data.coins);
+      setAllTokens(+res.data.coins);
+      setTokenLimit(+res.data.coinLimit);
       setLoading(false);
     });
-  }, [email, setAllTokens, setLoading]);
+  }, [email, setAllTokens, setLoading, setTokenLimit]);
 
   return (
     <>

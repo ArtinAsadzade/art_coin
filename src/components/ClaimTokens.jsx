@@ -1,21 +1,19 @@
 import { useCallback, useContext, useState } from "react";
-import { UserTokensContext } from "../context/UserTokensContext";
+import { UserAllDataContext } from "../context/UserAllDataContext";
 import { decrypted, formatNumber } from "../utils";
 import axios from "axios";
 import Toast from "./Toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { UserAllTokensContext } from "../context/UserAllTokensContext";
 
 export default function ClaimTokens() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
-  const { tokens, setTokens } = useContext(UserTokensContext);
-  const { allTokens, setAllTokens } = useContext(UserAllTokensContext);
+  const { allTokens, setAllTokens, tokens, setTokens, tokenLimit } = useContext(UserAllDataContext);
   const email = decrypted("token");
 
   const updateUserTokensHandler = useCallback(() => {
-    if (tokens > 50) {
+    if (tokens >= 50 || tokenLimit === 0) {
       axios
-        .put(`${import.meta.env.VITE_API}api/users`, { email, coins: tokens + allTokens })
+        .put(`${import.meta.env.VITE_API}api/users`, { email, coins: tokens + allTokens, coinLimit: tokenLimit })
         .then((res) => {
           setTokens(0);
           setAllTokens(res.data.coins);
@@ -30,7 +28,7 @@ export default function ClaimTokens() {
         show: true,
       });
     }
-  }, [email, setTokens, tokens]);
+  }, [allTokens, email, setAllTokens, setTokens, tokenLimit, tokens]);
 
   return (
     <>

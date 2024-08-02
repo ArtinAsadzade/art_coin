@@ -1,11 +1,10 @@
 import { useNavigate, useRoutes } from "react-router-dom";
 import { routers } from "./router/routes";
-import { UserTokensProvider } from "./context/UserTokensContext";
 import { useEffect } from "react";
 import { decrypted } from "./utils";
 import axios from "axios";
 import { coming_soon_url, home_url, login_url } from "./router/Urls";
-import { UserAllTokensProvider } from "./context/UserAllTokensContext";
+import { UserAllDataProvider } from "./context/UserAllDataContext";
 
 function App() {
   const routes = useRoutes(routers);
@@ -32,9 +31,7 @@ function App() {
 
   return (
     <>
-      <UserTokensProvider>
-        <UserAllTokensProvider>{routes}</UserAllTokensProvider>
-      </UserTokensProvider>
+      <UserAllDataProvider>{routes}</UserAllDataProvider>
     </>
   );
 }

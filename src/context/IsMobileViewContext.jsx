@@ -17,7 +17,7 @@ export default function IsMobileViewProvider({ children }) {
       if (window.innerWidth > 576) {
         setIsMobile(false);
       } else {
-        // setIsMobile(detectedMobile);
+        setIsMobile(detectedMobile);
         setIsMobile(true);
       }
     };

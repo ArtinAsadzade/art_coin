@@ -1,29 +1,37 @@
 import { useCallback, useContext } from "react";
-import { UserTokensContext } from "../context/UserTokensContext";
-import { decrypted, encrypted } from "../utils";
+import { UserAllDataContext } from "../context/UserAllDataContext";
 
 export default function Coin() {
-  const { setTokens } = useContext(UserTokensContext);
-  const decryptedData = decrypted("user");
+  const { setTokens, setTokenLimit, tokenLimit } = useContext(UserAllDataContext);
 
   const handleClick = useCallback(
     (e) => {
       const image = e.currentTarget;
+      const { clientX, clientY } = e;
 
-      setTokens((prevTokens) => {
-        const newTokens = prevTokens + 1;
-        if (decryptedData.email) {
-          encrypted({ ...decryptedData, tokens: newTokens }, "user");
-        }
-        return newTokens;
-      });
+      if (tokenLimit > 0) {
+        setTokens((prevTokens) => prevTokens + 1);
+        setTokenLimit((prev) => prev - 1);
+
+        const numberElement = document.createElement("div");
+        numberElement.className = "absolute text-4xl font-bold select-none text-secondary text-shadow animate-move-up";
+        numberElement.textContent = "+1";
+        numberElement.style.left = `${clientX + 10}px`;
+        numberElement.style.top = `${clientY - 20}px`;
+
+        document.body.appendChild(numberElement);
+
+        numberElement.addEventListener("animationend", () => {
+          numberElement.remove();
+        });
+      }
 
       image.classList.add("animate-shake");
       setTimeout(() => {
         image.classList.remove("animate-shake");
       }, 100);
     },
-    [decryptedData, setTokens]
+    [setTokenLimit, setTokens, tokenLimit]
   );
 
   return (

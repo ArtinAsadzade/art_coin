@@ -1,11 +1,6 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { findRank } from "../utils";
 
 export default function Rank({ tokens }) {
   const rank = findRank(tokens);
-  return (
-    <div className={`w-full text-secondary font-bold flex justify-center items-center gap-2 cursor-pointer`}>
-      {rank.title} <ChevronRightIcon className="w-5" />
-    </div>
-  );
+  return <div>{rank.title}</div>;
 }

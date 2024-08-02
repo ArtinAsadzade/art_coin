@@ -21,9 +21,14 @@ export default {
           "90%": { transform: "translate(1px, 2px) rotate(0deg)" },
           "100%": { transform: "translate(1px, -2px) rotate(-1deg)" },
         },
+        "move-up": {
+          "0%": { opacity: "1", transform: "translateY(0)" },
+          "100%": { opacity: "0", transform: "translateY(-150px)" },
+        },
       },
       animation: {
         shake: "shake 0.5s",
+        "move-up": "move-up 1s ease-in-out forwards",
       },
     },
   },

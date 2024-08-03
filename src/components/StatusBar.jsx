@@ -3,13 +3,19 @@ import { UserAllDataContext } from "../context/UserAllDataContext";
 import Rank from "./Rank";
 
 export default function StatusBar() {
-  const { allTokens, tokenLimit } = useContext(UserAllDataContext);
+  const { allTokens, tokenLimit, perTap } = useContext(UserAllDataContext);
   return (
-    <div className="w-full flex justify-between gap-2">
-      <div className="w-full bg-secondary rounded-md p-2 flex justify-between font-bold text-primary">
-        Taps Left: <span>{tokenLimit}</span>
+    <div className="w-full flex flex-col gap-2">
+      <div className="flex justify-between gap-2">
+        <div className="w-full bg-secondary rounded-md p-2 flex justify-between font-bold text-primary">
+          Taps Left: <span>{tokenLimit.toLocaleString("EN")}</span>
+        </div>
+        <div className="w-full bg-secondary rounded-md p-2 flex justify-between font-bold text-primary">
+          Per Tap:
+          <span>{perTap.toLocaleString("EN")}</span>
+        </div>
       </div>
-      <div className="w-full bg-secondary rounded-md p-2 flex justify-between font-bold text-primary">
+      <div className="w-full bg-secondary rounded-md p-2 flex justify-center gap-2 font-bold text-primary">
         Rank:
         <Rank tokens={allTokens} />
       </div>

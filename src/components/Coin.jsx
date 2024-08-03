@@ -2,7 +2,7 @@ import { useCallback, useContext } from "react";
 import { UserAllDataContext } from "../context/UserAllDataContext";
 
 export default function Coin() {
-  const { setTokens, setTokenLimit, tokenLimit } = useContext(UserAllDataContext);
+  const { setTokens, setTokenLimit, tokenLimit, perTap } = useContext(UserAllDataContext);
 
   const handleClick = useCallback(
     (e) => {
@@ -10,12 +10,12 @@ export default function Coin() {
       const { clientX, clientY } = e;
 
       if (tokenLimit > 0) {
-        setTokens((prevTokens) => prevTokens + 1);
-        setTokenLimit((prev) => prev - 1);
+        setTokens((prevTokens) => prevTokens + perTap);
+        setTokenLimit((prev) => prev - perTap);
 
         const numberElement = document.createElement("div");
         numberElement.className = "absolute text-4xl font-bold select-none text-secondary text-shadow animate-move-up";
-        numberElement.textContent = "+1";
+        numberElement.textContent = `+${perTap}`;
         numberElement.style.left = `${clientX + 10}px`;
         numberElement.style.top = `${clientY - 20}px`;
 

@@ -12,7 +12,7 @@ import Loading from "../components/Loading";
 
 export default function Home() {
   const { loading, setLoading } = useFetch();
-  const { setAllTokens, setTokenLimit } = useContext(UserAllDataContext);
+  const { setAllTokens, setTokenLimit, setPerTap } = useContext(UserAllDataContext);
 
   const email = decrypted("token");
 
@@ -21,9 +21,10 @@ export default function Home() {
     axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email }).then((res) => {
       setAllTokens(+res.data.coins);
       setTokenLimit(+res.data.coinLimit);
+      setPerTap(+res.data.perTap);
       setLoading(false);
     });
-  }, [email, setAllTokens, setLoading, setTokenLimit]);
+  }, [email, setAllTokens, setLoading, setPerTap, setTokenLimit]);
 
   return (
     <>

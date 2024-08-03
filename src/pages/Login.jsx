@@ -145,11 +145,9 @@ export default function Login() {
       {token ? (
         <Navigate to={coming_soon_url} />
       ) : (
-        <div className="w-full bg-primary h-svh flex justify-center items-center">
-          <div className="w-full bg-white rounded-lg shadow border relative">
-            {step === 2 && (
-              <ArrowLeftCircleIcon className="text-secondary w-12 p-1 absolute top-1 left-1 cursor-pointer" onClick={() => setStep(1)} />
-            )}
+        <div className="w-full bg-primary h-svh flex justify-center items-center px-2">
+          <div className="w-full bg-secondary rounded-lg shadow relative">
+            {step === 2 && <ArrowLeftCircleIcon className="text-primary w-12 p-1 absolute top-1 left-1 cursor-pointer" onClick={() => setStep(1)} />}
             <div className="p-6 space-y-8 mt-6">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
               <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
@@ -165,7 +163,7 @@ export default function Login() {
                     </div>
                     {step === 2 ? (
                       <>
-                        <label htmlFor="email" className="mb-2 text-lg font-bold text-secondary">
+                        <label htmlFor="email" className="mb-2 text-lg font-bold text-primary">
                           {value.email}
                         </label>
                       </>
@@ -178,7 +176,7 @@ export default function Login() {
                       type="email"
                       name="email"
                       id="email"
-                      className="bg-gray-100 text-primary rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary"
+                      className="bg-gray-100 text-primary rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary"
                       placeholder="name@company.com"
                       required
                       onChange={handleValueChanges}
@@ -191,7 +189,7 @@ export default function Login() {
                           key={index}
                           type="tel"
                           name={`pin${index}`}
-                          className="block w-[45px] h-[45px] text-center bg-gray-100 text-secondary p-3 rounded-md text-2xl font-bold outline-none border-2 focus:ring-inset focus:ring-secondary focus:ring-2 border-secondary disabled:opacity-50 disabled:pointer-events-none"
+                          className="block w-[45px] h-[45px] text-center bg-gray-100 text-primary p-3 rounded-md text-2xl font-bold outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary disabled:opacity-50 disabled:pointer-events-none"
                           value={pinValue}
                           onChange={(e) => handleValueChanges(e, index)}
                           onKeyDown={(e) => handleKeyDown(e, index)}
@@ -204,7 +202,11 @@ export default function Login() {
                     </div>
                   )}
                 </div>
-                <CustomBtn loading={loading} onClick={submitHandler}>
+                <CustomBtn
+                  loading={loading}
+                  onClick={submitHandler}
+                  className="w-full text-white focus:outline-none font-bold rounded-lg text-sm  px-5 py-2.5 text-center bg-primary "
+                >
                   {step === 1 ? "Next" : "Login"}
                 </CustomBtn>
               </form>

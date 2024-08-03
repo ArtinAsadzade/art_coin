@@ -11,12 +11,12 @@ export default function ClaimTokens() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const { loading, setLoading } = useFetch();
 
-  const { allTokens, setAllTokens, tokens, setTokens, tokenLimit } = useContext(UserAllDataContext);
+  const { allTokens, setAllTokens, tokens, setTokens, tokenLimit, perTap } = useContext(UserAllDataContext);
   const email = decrypted("token");
 
   const updateUserTokensHandler = useCallback(() => {
     setLoading(true);
-    if (tokens >= 50 || tokenLimit === 0) {
+    if (tokens >= 30 * perTap || tokenLimit === 0) {
       axios
         .put(`${import.meta.env.VITE_API}api/users`, { email, coins: tokens + allTokens, coinLimit: tokenLimit })
         .then((res) => {
@@ -28,12 +28,12 @@ export default function ClaimTokens() {
     } else {
       setToastData({
         icon: <XMarkIcon className="w-6 text-red-500" />,
-        msg: "You need 50 coins to claim coins.",
+        msg: `You need ${30 * perTap} coins to claim coins.`,
         show: true,
       });
       setLoading(false);
     }
-  }, [allTokens, email, setAllTokens, setLoading, setTokens, tokenLimit, tokens]);
+  }, [allTokens, email, perTap, setAllTokens, setLoading, setTokens, tokenLimit, tokens]);
 
   return (
     <>

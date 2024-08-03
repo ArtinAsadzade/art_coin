@@ -5,6 +5,7 @@ import { decrypted } from "./utils";
 import axios from "axios";
 import { coming_soon_url, home_url, login_url } from "./router/Urls";
 import { UserAllDataProvider } from "./context/UserAllDataContext";
+import bridge from "@vkontakte/vk-bridge";
 
 function App() {
   const routes = useRoutes(routers);
@@ -12,6 +13,7 @@ function App() {
   const token = decrypted("token");
 
   useEffect(() => {
+    bridge.send("VKWebAppInit");
     if (token) {
       axios
         .post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token })

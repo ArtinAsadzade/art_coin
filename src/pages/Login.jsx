@@ -145,7 +145,7 @@ export default function Login() {
       {token ? (
         <Navigate to={coming_soon_url} />
       ) : (
-        <div className="w-full bg-primary h-svh flex justify-center items-center px-2">
+        <div className="w-full bg-primary h-svh flex justify-center items-center px-3">
           <div className="w-full bg-secondary rounded-lg shadow relative">
             {step === 2 && <ArrowLeftCircleIcon className="text-primary w-12 p-1 absolute top-1 left-1 cursor-pointer" onClick={() => setStep(1)} />}
             <div className="p-6 space-y-8 mt-6">

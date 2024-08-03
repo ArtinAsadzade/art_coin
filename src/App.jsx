@@ -3,7 +3,7 @@ import { routers } from "./router/routes";
 import { useEffect } from "react";
 import { decrypted } from "./utils";
 import axios from "axios";
-import { coming_soon_url, home_url, login_url } from "./router/Urls";
+import { login_url } from "./router/Urls";
 import { UserAllDataProvider } from "./context/UserAllDataContext";
 import bridge from "@vkontakte/vk-bridge";
 
@@ -15,19 +15,10 @@ function App() {
   useEffect(() => {
     bridge.send("VKWebAppInit");
     if (token) {
-      axios
-        .post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token })
-        .then((res) => {
-          if (res.data.perm > 0) {
-            navigate(home_url);
-          } else {
-            navigate(coming_soon_url);
-          }
-        })
-        .catch(() => {
-          navigate(login_url);
-          localStorage.clear();
-        });
+      axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }).catch(() => {
+        navigate(login_url);
+        localStorage.clear();
+      });
     }
   }, [navigate, token]);
 

@@ -2,7 +2,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { decrypted } from "../utils";
 import { useEffect, useState } from "react";
-import { home_url, login_url } from "./Urls";
+import { coming_soon_url, home_url, login_url } from "./Urls";
 import axios from "axios";
 import Loading from "../components/Loading";
 
@@ -16,7 +16,8 @@ export default function PrivateRoute() {
       axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }).then((res) => {
         if (+res.data.perm > 0) {
           setIsAuthenticated(true);
-          navigate(home_url);
+        } else {
+          navigate(coming_soon_url);
         }
       });
     } else {

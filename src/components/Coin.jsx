@@ -9,7 +9,7 @@ export default function Coin() {
       const image = e.currentTarget;
       const { clientX, clientY } = e;
 
-      if (tokenLimit > 0) {
+      if (tokenLimit > 0 && perTap <= tokenLimit) {
         setTokens((prevTokens) => prevTokens + perTap);
         setTokenLimit((prev) => prev - perTap);
 
@@ -31,7 +31,7 @@ export default function Coin() {
         image.classList.remove("animate-shake");
       }, 100);
     },
-    [setTokenLimit, setTokens, tokenLimit]
+    [perTap, setTokenLimit, setTokens, tokenLimit]
   );
 
   return (

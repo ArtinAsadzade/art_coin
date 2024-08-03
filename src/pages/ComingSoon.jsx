@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { login_url } from "../router/Urls";
+import { home_url, login_url } from "../router/Urls";
 import { decrypted, nameTranslator } from "../utils";
 
 export default function ComingSoon() {
@@ -27,9 +27,9 @@ export default function ComingSoon() {
           </p>
         </div>
         {token ? (
-          <div className="w-full bg-secondary rounded-lg p-3 text-primary font-bold flex items-center justify-center gap-2">
+          <Link to={home_url} className="w-full bg-secondary rounded-lg p-3 text-primary font-bold flex items-center justify-center gap-2">
             Welcome <span className="border-b border-primary uppercase">{nameTranslator(token)}</span>
-          </div>
+          </Link>
         ) : (
           <Link to={login_url} className="w-full bg-secondary rounded-lg p-3 text-primary font-bold text-center cursor-pointer">
             Now Create Account

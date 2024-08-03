@@ -205,7 +205,7 @@ export default function Login() {
                 <CustomBtn
                   loading={loading}
                   onClick={submitHandler}
-                  className="w-full text-white focus:outline-none font-bold rounded-lg text-sm  px-5 py-2.5 text-center bg-primary "
+                  className="w-full text-secondary focus:outline-none font-bold rounded-lg text-sm  px-5 py-2.5 text-center bg-primary "
                 >
                   {step === 1 ? "Next" : "Login"}
                 </CustomBtn>

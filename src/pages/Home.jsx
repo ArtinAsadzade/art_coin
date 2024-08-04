@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <div className="w-full h-screen flex flex-col">
-        <div className="flex-1 flex flex-col gap-5 items-center px-3 bg-primary relative select-none">
+        <div className="flex-1 flex flex-col gap-5 items-center px-3 relative select-none bg-primary">
           <Tokens />
           <StatusBar />
           <Coin />

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { UserAllDataContext } from "../context/UserAllDataContext";
 import Rank from "./Rank";
+import { Link } from "react-router-dom";
+import { ranks_url } from "../router/Urls";
 
 export default function StatusBar() {
   const { allTokens, tokenLimit, perTap } = useContext(UserAllDataContext);
@@ -15,10 +17,10 @@ export default function StatusBar() {
           <span>{perTap.toLocaleString("EN")}</span>
         </div>
       </div>
-      <div className="w-full bg-secondary rounded-md p-2 flex justify-center gap-2 font-bold text-primary">
-        Rank:
+      <Link to={ranks_url} className="w-full bg-secondary rounded-md p-2 flex justify-center gap-2 font-bold text-primary">
+        {/* Rank: */}
         <Rank tokens={allTokens} />
-      </div>
+      </Link>
     </div>
     // <div className="flex w-full justify-center items-center gap-1">
     //   <FireIcon className="w-7 text-secondary font-bold text-lg" />

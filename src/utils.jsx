@@ -16,7 +16,6 @@ export const decrypted = (key) => {
       const bytes = CryptoJS.AES.decrypt(encryptedData, import.meta.env.VITE_SECRET_KEY);
       const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
-      // Check if the hash matches
       const dataHash = sha256(decryptedData.data).toString();
       if (dataHash !== decryptedData.hash) {
         throw new Error("Data integrity check failed");
@@ -35,7 +34,8 @@ export const decrypted = (key) => {
 };
 
 export const findRank = (tokens) => {
-  return ranksData.find((rank) => rank.start <= +tokens);
+  const reversedRanks = [...ranksData].reverse();
+  return reversedRanks.find((rank) => rank.start <= +tokens);
 };
 
 export const findUserHandler = (email, code, users) => {

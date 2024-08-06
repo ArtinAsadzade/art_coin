@@ -1,4 +1,4 @@
-import { decrypted } from "../../../utils";
+import { decrypted, formatNumber } from "../../../utils";
 
 export default function Users({ props, index }) {
   const email = decrypted("token");
@@ -12,7 +12,7 @@ export default function Users({ props, index }) {
           {props.email === email && <div className="bg-primary text-secondary px-[4px] py-[2px] text-[10px] rounded-md flex items-center">YOU</div>}
         </div>
       </div>
-      <p>{props.coins}</p>
+      <p>{formatNumber(props.coins)}</p>
     </div>
   );
 }

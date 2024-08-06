@@ -17,7 +17,7 @@ export default function RanksPage() {
     axios
       .get(`${import.meta.env.VITE_API}api/users`)
       .then((res) => {
-        (res.data && setLoading(false)) || setData(res.data);
+        (res.data && setLoading(false)) || setData(res.data.sort((a, b) => b.coins - a.coins));
       })
       .catch((err) => {
         (err && setLoading(false)) ||

@@ -6,6 +6,7 @@ import { coming_soon_url, login_url } from "./Urls";
 import axios from "axios";
 import Loading from "../components/Loading";
 import { UserAllDataContext } from "../context/UserAllDataContext";
+import NavContainer from "../components/Nav/NavContainer";
 
 export default function PrivateRoute() {
   const [isAuthenticated, setIsAuthenticated] = useState("");
@@ -30,5 +31,16 @@ export default function PrivateRoute() {
     }
   }, [navigate, setAllTokens, setPerTap, setTokenLimit, token]);
 
-  return <>{isAuthenticated ? <Outlet /> : <Loading />}</>;
+  return (
+    <>
+      {isAuthenticated ? (
+        <>
+          <Outlet />
+          <NavContainer />
+        </>
+      ) : (
+        <Loading />
+      )}
+    </>
+  );
 }

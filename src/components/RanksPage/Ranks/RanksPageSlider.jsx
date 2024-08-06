@@ -4,10 +4,10 @@ import RankItem from "./RankItem";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { ranksData } from "../../data/Data";
+import { ranksData } from "../../../data/Data";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { UserAllDataContext } from "../../context/UserAllDataContext";
-import { findRank } from "../../utils";
+import { UserAllDataContext } from "../../../context/UserAllDataContext";
+import { findRank } from "../../../utils";
 
 export default function RanksPageSlider() {
   const [ranks] = useState(ranksData);
@@ -29,7 +29,7 @@ export default function RanksPageSlider() {
       >
         {ranks.map((item) => (
           <SwiperSlide key={item.id}>
-            <RankItem {...item} />
+            <RankItem props={item} userRank={userRank} />
           </SwiperSlide>
         ))}
       </Swiper>

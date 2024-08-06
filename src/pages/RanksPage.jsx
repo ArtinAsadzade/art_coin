@@ -1,5 +1,5 @@
 import NavContainer from "../components/Nav/NavContainer";
-import RanksPageSlider from "../components/RanksPage/RanksPageSlider";
+import RanksPageSlider from "../components/RanksPage/Ranks/RanksPageSlider";
 
 export default function RanksPage() {
   return (

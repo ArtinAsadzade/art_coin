@@ -5,8 +5,8 @@ import Tokens from "../components/Tokens";
 export default function Home() {
   return (
     <>
-      <div className="w-full flex flex-col">
-        <div className="flex-1 flex flex-col gap-5 items-center px-3 relative select-none bg-primary pb-[90px]">
+      <div className="w-full h-svh flex flex-col">
+        <div className="flex-1 flex flex-col gap-5 items-center px-3 relative select-none bg-primary pb-[100px]">
           <Tokens />
           <StatusBar />
           <Coin />

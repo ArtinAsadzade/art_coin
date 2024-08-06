@@ -24,7 +24,7 @@ export default function Toast({ icon, msg, show, setShow }) {
   return createPortal(
     <div
       id="toast-default"
-      className={`flex items-center justify-between w-full max-w-xs p-4 text-gray-500 bg-secondary rounded-lg fixed top-2 right-2 shadow transition-all duration-300 ${
+      className={`flex items-center justify-between w-full max-w-xs p-4 text-gray-500 bg-secondary rounded-lg fixed top-2 right-2 shadow transition-all duration-300 z-50 ${
         show ? "opacity-100 visible mr-0" : "opacity-0 invisible animate-slide-out-right -mr-96"
       }`}
       role="alert"

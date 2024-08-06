@@ -1,23 +1,37 @@
 import { useContext, useEffect, useState } from "react";
 import { formatNumber } from "../../../utils";
 import { UserAllDataContext } from "../../../context/UserAllDataContext";
+import { FireIcon } from "@heroicons/react/24/outline";
 
 export default function RankItem({ props, userRank }) {
   const { allTokens } = useContext(UserAllDataContext);
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    setPercent((userRank.end / allTokens) * 100);
+    setPercent(Math.ceil((allTokens / userRank.end) * 100));
   }, [allTokens, userRank.end]);
-
-  console.log(percent);
-  console.log(userRank.end / allTokens);
 
   return (
     <div className="flex flex-col items-center gap-2 mx-4 font-bold text-secondary py-5 text-2xl">
       <h1>{props.title} League</h1>
       <img src={props.src} alt={`${props.title} Rank Picture`} className="w-[400px] h-[300px] object-cover" />
-      {+props.start === +userRank.start ? <p>Next Rank {formatNumber(userRank.end - allTokens)}</p> : <p>From {formatNumber(props.start)}</p>}
+      {+props.start === +userRank.start ? (
+        <>
+          <div className="flex w-full justify-center items-center gap-1">
+            <FireIcon className="w-7 text-secondary font-bold text-[18px]" />
+
+            <div className="p-1 rounded-lg w-full max-h-4 bg-secondary">
+              <div className="py-1 bg-primary rounded-xl" style={{ width: percent + "%" }}></div>
+            </div>
+            <p className="text-secondary font-bold text-[18px]">{percent}%</p>
+          </div>
+          <p>
+            {formatNumber(allTokens)} / {formatNumber(userRank.end)}
+          </p>
+        </>
+      ) : (
+        <p>From {formatNumber(props.start)}</p>
+      )}
     </div>
   );
 }

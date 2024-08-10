@@ -18,19 +18,25 @@ export default function RankItem({ props, userRank }) {
       {+props.start === +userRank.start ? (
         <>
           <div className="flex w-full justify-center items-center gap-1">
-            <FireIcon className="w-7 text-secondary font-bold text-[18px]" />
+            <FireIcon className="w-8 text-secondary font-bold text-[18px]" />
 
             <div className="p-1 rounded-lg w-full max-h-4 bg-secondary">
               <div className="py-1 bg-primary rounded-xl" style={{ width: percent + "%" }}></div>
             </div>
-            <p className="text-secondary font-bold text-[18px]">{percent}%</p>
+            <p className="text-secondary font-bold text-[18px]">{props.end === 0 ? "OMG" : percent + "%"}</p>
           </div>
-          <p>
-            {formatNumber(allTokens)} / {formatNumber(userRank.end)}
-          </p>
+          <p>{props.end === 0 ? "Your God" : formatNumber(allTokens) + " / " + formatNumber(userRank.end)}</p>
         </>
       ) : (
-        <p>From {formatNumber(props.start)}</p>
+        <p>
+          {allTokens > props.start ? (
+            <div className="flex items-center gap-2">
+              You Nailed It <FireIcon className="w-7 text-secondary font-bold text-[18px]" />
+            </div>
+          ) : (
+            "From " + formatNumber(props.start)
+          )}
+        </p>
       )}
     </div>
   );

@@ -7,9 +7,11 @@ import useFetch from "../hooks/useFetch";
 import Loading from "../components/Loading";
 import Toast from "../components/Toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import ModalContainer from "../components/ModalContainer";
 
 export default function RanksPage() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
+  const [openModal, setOpenModal] = useState(true);
   const { data, setData, loading, setLoading } = useFetch();
 
   useEffect(() => {
@@ -32,14 +34,20 @@ export default function RanksPage() {
   return (
     <>
       <Toast icon={toastData.icon} msg={toastData.msg} show={toastData.show} setShow={setToastData} />
+      <ModalContainer open={openModal} setOpen={setOpenModal}>
+        <div>
+          <h3>Now You Can Set Your Name</h3>
+          <input type="text" />
+        </div>
+      </ModalContainer>
       {loading ? (
         <Loading />
       ) : (
         <div className="w-full h-svh flex flex-col">
           <div className="flex-1 flex flex-col gap-5 items-center px-3 relative select-none bg-primary pb-[100px]">
             <RanksPageSlider />
-            <NavContainer />
             <Ranking data={data} />
+            <NavContainer />
           </div>
         </div>
       )}

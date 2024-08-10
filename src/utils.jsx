@@ -1,6 +1,7 @@
 import { ranksData } from "./data/Data";
 import CryptoJS from "crypto-js";
 import sha256 from "crypto-js/sha256";
+import { useState } from "react";
 
 export const encrypted = (data, key) => {
   const jsonData = JSON.stringify(data);
@@ -77,3 +78,4 @@ export const nameTranslator = (input) => {
   }
   return input;
 };
+

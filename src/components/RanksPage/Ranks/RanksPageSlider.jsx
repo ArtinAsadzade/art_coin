@@ -24,6 +24,9 @@ export default function RanksPageSlider() {
         navigation={{
           clickable: true,
         }}
+        allowTouchMove={false}
+        simulateTouch={false}
+        draggable={false}
         className="mySwiper"
         initialSlide={userRank.id - 1}
       >

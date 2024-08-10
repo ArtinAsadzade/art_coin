@@ -8,7 +8,7 @@ export default function Users({ props, index }) {
       <div className="flex items-center gap-4">
         <p>{index + 1} </p>
         <div className="flex items-center gap-2">
-          <h3>user_{props._id.slice(0, 7)}</h3>
+          <h3>{props.name ? props.name : "user_" + props._id.slice(0, 7)}</h3>
           {props.email === email && <div className="bg-primary text-secondary px-[4px] py-[2px] text-[10px] rounded-md flex items-center">YOU</div>}
         </div>
       </div>

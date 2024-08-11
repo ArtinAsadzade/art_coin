@@ -173,7 +173,7 @@ export default function Login() {
                       type="email"
                       name="email"
                       id="email"
-                      className="bg-gray-100 text-primary rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary"
+                      className="bg-secondary text-primary rounded-lg block w-full p-2.5 placeholder-primary outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary"
                       placeholder="name@company.com"
                       required
                       onChange={handleValueChanges}
@@ -186,7 +186,7 @@ export default function Login() {
                           key={index}
                           type="tel"
                           name={`pin${index}`}
-                          className="block w-[45px] h-[45px] text-center bg-gray-100 text-primary p-3 rounded-md text-2xl font-bold outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary disabled:opacity-50 disabled:pointer-events-none"
+                          className="block w-[45px] h-[45px] text-center bg-secondary text-primary p-3 rounded-md text-2xl font-bold outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary disabled:opacity-50 disabled:pointer-events-none"
                           value={pinValue}
                           onChange={(e) => handleValueChanges(e, index)}
                           onKeyDown={(e) => handleKeyDown(e, index)}

@@ -57,12 +57,10 @@ export default function PrivateRoute() {
       .then((res) => {
         res && setLoading(false);
         res && setOpenModal(false);
-        console.log(res);
       })
       .catch((err) => {
         err && setLoading(false);
         err && setOpenModal(false);
-        console.log(err);
       });
   }, [setLoading, token, value.name]);
 
@@ -79,10 +77,10 @@ export default function PrivateRoute() {
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="Name"
+                  placeholder="Name ..."
                   value={value.name}
                   onChange={(e) => handleValueChanges(e)}
-                  className="w-full p-2 rounded-lg border-[1px] border-primary focus:ring-1 ring-primary text-secondary placeholder:text-secondary bg-primary focus:outline-none"
+                  className="w-full p-2 rounded-lg border-[1px] border-primary focus:ring-1 ring-primary text-primary placeholder:text-primary bg-secondary focus:outline-none"
                 />
               </div>
               <CustomBtn className="border-[1px] border-primary w-2/3 py-2.5 rounded-lg" onClick={setUserNameHandler} loading={loading}>

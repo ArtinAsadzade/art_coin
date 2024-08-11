@@ -29,15 +29,6 @@ export default function Toast({ icon, msg, show, setShow }) {
       }`}
       role="alert"
     >
-      <button
-        type="button"
-        className="-mx-1.5 -my-1.5 text-primary rounded-lg inline-flex items-center justify-center h-8 w-8"
-        data-dismiss-target="#toast-default"
-        aria-label="Close"
-        onClick={hideToast}
-      >
-        <XMarkIcon className="w-5" />
-      </button>
       <div className="ms-3 text-sm font-bold text-primary">{msg}</div>
       <div className="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 bg-primary rounded-lg font-bold">{icon}</div>
     </div>,

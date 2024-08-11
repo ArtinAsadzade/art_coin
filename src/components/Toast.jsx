@@ -24,13 +24,11 @@ export default function Toast({ icon, msg, show, setShow }) {
   return createPortal(
     <div
       id="toast-default"
-      className={`flex items-center justify-between w-full max-w-xs p-4 text-gray-500 bg-secondary rounded-lg fixed top-2 right-2 shadow transition-all duration-300 z-50 ${
-        show ? "opacity-100 visible mr-0" : "opacity-0 invisible animate-slide-out-right -mr-96"
+      className={`flex items-center justify-between w-full max-w-xs p-4 text-gray-500 bg-secondary rounded-lg fixed top-2 left-2 shadow transition-all duration-300 z-50 ${
+        show ? "opacity-100 visible ml-0" : "opacity-0 invisible -ml-96"
       }`}
       role="alert"
     >
-      <div className="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 bg-primary rounded-lg font-bold">{icon}</div>
-      <div className="ms-3 text-sm font-bold text-primary">{msg}</div>
       <button
         type="button"
         className="-mx-1.5 -my-1.5 text-primary rounded-lg inline-flex items-center justify-center h-8 w-8"
@@ -40,6 +38,8 @@ export default function Toast({ icon, msg, show, setShow }) {
       >
         <XMarkIcon className="w-5" />
       </button>
+      <div className="ms-3 text-sm font-bold text-primary">{msg}</div>
+      <div className="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 bg-primary rounded-lg font-bold">{icon}</div>
     </div>,
     document.getElementById("modals-parent")
   );

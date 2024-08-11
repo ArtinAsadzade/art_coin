@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply select-none;
+  }
+  img {
+    @apply pointer-events-none;
+  }
+}
+
 .text-shadow {
   text-shadow: 0 0 5px #3d444b;
 }

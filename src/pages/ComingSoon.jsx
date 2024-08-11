@@ -16,7 +16,7 @@ export default function ComingSoon() {
 
   return (
     <div className="w-full h-svh flex flex-col">
-      <div className="flex-1 flex flex-col gap-5 items-center justify-evenly p-5 bg-primary relative select-none">
+      <div className="flex-1 flex flex-col gap-5 items-center justify-evenly p-5 bg-primary relative  ">
         <div className="w-full flex justify-center px-10 py-5 items-center" onClick={handleClick}>
           <img src="/logo.webp" className="max-w-72 rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" />
         </div>

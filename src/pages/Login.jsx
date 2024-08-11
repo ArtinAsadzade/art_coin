@@ -11,10 +11,7 @@ import { coming_soon_url } from "../router/Urls";
 export default function Login() {
   const [step, setStep] = useState(1);
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
-  const [value, setValue] = useState({
-    email: "",
-    pin: ["", "", "", ""],
-  });
+  const [value, setValue] = useState({ email: "", pin: ["", "", "", ""] });
   const { loading, setLoading } = useFetch();
 
   const token = decrypted("token");

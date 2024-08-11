@@ -14,7 +14,7 @@ export default function Coin() {
         setTokenLimit((prev) => prev - perTap);
 
         const numberElement = document.createElement("div");
-        numberElement.className = "absolute text-4xl font-bold select-none text-secondary text-shadow animate-move-up";
+        numberElement.className = "absolute text-4xl font-bold   text-secondary text-shadow animate-move-up";
         numberElement.textContent = `+${perTap}`;
         numberElement.style.left = `${clientX + 10}px`;
         numberElement.style.top = `${clientY - 20}px`;
@@ -35,8 +35,8 @@ export default function Coin() {
   );
 
   return (
-    <div className="w-full flex justify-center px-10 py-5 items-center">
-      <img src="/logo.webp" className="max-w-72 rounded-full cursor-pointer shadow-2xl" alt="Art Coin Logo" onClick={handleClick} />
+    <div className="w-full max-w-72 flex justify-center items-center rounded-full cursor-pointer" onClick={handleClick}>
+      <img src="/logo.webp" className="max-w-72 rounded-full shadow-2xl" alt="Art Coin Logo" />
     </div>
   );
 }

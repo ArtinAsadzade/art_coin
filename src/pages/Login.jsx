@@ -65,74 +65,60 @@ export default function Login() {
     }
   };
 
+  const disable = step === 1 ? value.email.length > 5 : step === 2 && pinNumber.length === 4 && value.email;
+
   const submitHandler = () => {
     if (step === 1) {
-      if (value.email) {
-        setLoading(true);
-        axios
-          .post(`${import.meta.env.VITE_API}api/mailer/send-verification-code`, {
-            email: value.email,
-          })
-          .then((response) => {
-            if (response.data) {
-              setStep(2);
-              setLoading(false);
-              setToastData({
-                icon: <CheckIcon className="w-6 text-green-500" />,
-                msg: response.data.message,
-                show: true,
-              });
-            }
-          })
-          .catch((error) => {
+      setLoading(true);
+      axios
+        .post(`${import.meta.env.VITE_API}api/mailer/send-verification-code`, {
+          email: value.email,
+        })
+        .then((response) => {
+          if (response.data) {
+            setStep(2);
             setLoading(false);
             setToastData({
-              icon: <XMarkIcon className="w-6 text-red-500" />,
-              msg: error.response.data,
+              icon: <CheckIcon className="w-6 text-green-500" />,
+              msg: response.data.message,
               show: true,
             });
+          }
+        })
+        .catch((error) => {
+          setLoading(false);
+          setToastData({
+            icon: <XMarkIcon className="w-6 text-red-500" />,
+            msg: error.response.data,
+            show: true,
           });
-      } else {
-        setToastData({
-          icon: <XMarkIcon className="w-6 text-red-500" />,
-          msg: "Please fill in the field below",
-          show: true,
         });
-      }
     } else if (step === 2) {
-      if (pinNumber.length === 4 && value.email) {
-        setLoading(true);
-        axios
-          .post(`${import.meta.env.VITE_API}api/mailer/verify-email`, {
-            email: value.email,
-            verificationCode: pinNumber,
-          })
-          .then((response) => {
-            if (response) {
-              setLoading(false);
-              setToastData({
-                icon: <CheckIcon className="w-6 text-green-500" />,
-                msg: response.data.message,
-                show: true,
-              });
-              encrypted(response.data.user.email, "token");
-            }
-          })
-          .catch((error) => {
+      setLoading(true);
+      axios
+        .post(`${import.meta.env.VITE_API}api/mailer/verify-email`, {
+          email: value.email,
+          verificationCode: pinNumber,
+        })
+        .then((response) => {
+          if (response) {
             setLoading(false);
             setToastData({
-              icon: <XMarkIcon className="w-6 text-red-500" />,
-              msg: error.response.data,
+              icon: <CheckIcon className="w-6 text-green-500" />,
+              msg: response.data.message,
               show: true,
             });
+            encrypted(response.data.user.email, "token");
+          }
+        })
+        .catch((error) => {
+          setLoading(false);
+          setToastData({
+            icon: <XMarkIcon className="w-6 text-red-500" />,
+            msg: error.response.data,
+            show: true,
           });
-      } else {
-        setToastData({
-          icon: <XMarkIcon className="w-6 text-red-500" />,
-          msg: "Please fill in the field below",
-          show: true,
         });
-      }
     }
   };
 
@@ -146,7 +132,7 @@ export default function Login() {
           <div className="w-full bg-secondary rounded-lg shadow relative">
             {step === 2 && <ArrowLeftCircleIcon className="text-primary w-12 p-1 absolute top-1 left-1 cursor-pointer" onClick={() => setStep(1)} />}
             <div className="p-6 space-y-8 mt-6">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary md:text-2xl">Welcome To Art Coin</h1>
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-primary">Welcome To Art Coin</h1>
               <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
                 <div>
                   <div className="flex flex-col items-center">
@@ -202,6 +188,7 @@ export default function Login() {
                 <CustomBtn
                   loading={loading}
                   onClick={submitHandler}
+                  disable={disable}
                   className="w-full text-secondary focus:outline-none font-bold rounded-lg text-sm  px-5 py-2.5 text-center bg-primary "
                 >
                   {step === 1 ? "Next" : "Login"}

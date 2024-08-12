@@ -20,6 +20,8 @@ export default function PrivateRoute() {
 
   const { setAllTokens, setTokenLimit, setPerTap } = useContext(UserAllDataContext);
 
+  const disable = value.name.length > 3 && value.name.length < 18;
+
   const navigate = useNavigate();
   const token = decrypted("token");
 
@@ -71,7 +73,7 @@ export default function PrivateRoute() {
           <ModalContainer open={openModal} setOpen={setOpenModal}>
             <div className="font-bold flex flex-col gap-5 items-center">
               <h3>You Can Set Your Name</h3>
-              <div className="w-2/3 flex gap-1 flex-col items-start">
+              <div className="w-full flex gap-1 flex-col items-start">
                 <label htmlFor="name">Your Name</label>
                 <input
                   type="text"
@@ -80,10 +82,15 @@ export default function PrivateRoute() {
                   placeholder="Name ..."
                   value={value.name}
                   onChange={(e) => handleValueChanges(e)}
-                  className="w-full p-2 rounded-lg border-[1px] border-primary focus:ring-1 ring-primary text-primary placeholder:text-primary bg-secondary focus:outline-none"
+                  className="bg-secondary text-primary rounded-lg block w-full p-2.5 placeholder-primary outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary"
                 />
               </div>
-              <CustomBtn className="border-[1px] border-primary w-2/3 py-2.5 rounded-lg" onClick={setUserNameHandler} loading={loading}>
+              <CustomBtn
+                className="border-[1px] border-primary w-full py-2.5 rounded-lg"
+                onClick={setUserNameHandler}
+                loading={loading}
+                disable={disable}
+              >
                 SUBMIT
               </CustomBtn>
             </div>

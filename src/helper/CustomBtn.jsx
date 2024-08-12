@@ -1,9 +1,9 @@
-export default function CustomBtn({ children, onClick, type, loading, className }) {
+export default function CustomBtn({ children, onClick, type, loading, className, disable }) {
   return (
     <button
       type={type ? type : "submit"}
-      className={`flex justify-center ${className} ${loading ? "opacity-80 cursor-not-allowed" : "opacity-100 cursor-pointer"}`}
-      onClick={!loading && onClick}
+      className={`flex justify-center ${className} ${loading || !disable ? "opacity-60 cursor-not-allowed" : "opacity-100 cursor-pointer"}`}
+      onClick={!loading && disable ? onClick : ""}
     >
       {loading ? (
         <div className="spinner w-[24px] h-[24px]">

@@ -43,8 +43,8 @@ export default function AccountInfo({ user }) {
               {formatNumber(user.perTap)}
             </div>
             <div className="bg-primary rounded-[5px] w-1/2">
-              <p>Join Time</p>
-              {formatNumber(user.coinLimit)}
+              <p>Invited Friends</p>
+              {formatNumber(user.invitedUsers.length)}
             </div>
           </div>
           <div>

@@ -14,6 +14,9 @@ export default function Login() {
   const [value, setValue] = useState({ email: "", pin: ["", "", "", ""] });
   const { loading, setLoading } = useFetch();
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const inviteToken = urlParams.get("token");
+
   const token = decrypted("token");
 
   const inputRefs = useRef([]);
@@ -99,6 +102,7 @@ export default function Login() {
         .post(`${import.meta.env.VITE_API}api/mailer/verify-email`, {
           email: value.email,
           verificationCode: pinNumber,
+          inviteToken: inviteToken ? inviteToken : "",
         })
         .then((response) => {
           if (response) {

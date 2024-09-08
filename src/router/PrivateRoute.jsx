@@ -72,22 +72,24 @@ export default function PrivateRoute() {
       {isAuthenticated ? (
         <>
           <ModalContainer open={openModal} setOpen={setOpenModal}>
-            <div className="font-bold flex flex-col gap-5 items-center">
-              <h3>You Can Set Your Name</h3>
-              <div className="w-full flex gap-1 flex-col items-start">
-                <label htmlFor="name">Your Name</label>
+            <div className="flex flex-col gap-5 items-center">
+              <h3 className="font-bold text-lg">You Can Set Your Name</h3>
+              <div className="w-full flex gap-1 flex-col items-start font-[600]">
+                <label htmlFor="name" className="text-[14px]">
+                  Your Name
+                </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="Name ..."
+                  placeholder="Name..."
                   value={value.name}
                   onChange={(e) => handleValueChanges(e)}
-                  className="bg-secondary text-primary rounded-lg block w-full p-2.5 placeholder-primary outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 border-primary"
+                  className="bg-secondary text-primary rounded-lg block w-full p-2.5 placeholder-primary outline-none border-2 focus:ring-inset focus:ring-primary focus:ring-2 placeholder:text-[14px] border-primary"
                 />
               </div>
               <CustomBtn
-                className="border-[1px] border-primary w-full py-2.5 rounded-lg"
+                className="bg-primary text-secondary w-full py-2.5 rounded-lg"
                 onClick={setUserNameHandler}
                 loading={loading}
                 disable={disable}

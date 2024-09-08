@@ -18,7 +18,7 @@ export default function Ranking({ data, userId }) {
           ?.slice(0, 100)
           .filter((item) => item.emailVerified)
           .map((item, index) => (
-            <Users key={item._id} index={index + 1} props={item} />
+            <Users key={item._id} index={index} props={item} />
           ))}
 
         {!isUserInTop100 && userIndex >= 0 && (
@@ -27,7 +27,7 @@ export default function Ranking({ data, userId }) {
               <h5>Your Rank</h5>
             </div>
             {userSurroundings?.map((item, index) => (
-              <Users key={item._id} index={userIndex - 2 + index + 1} props={item} />
+              <Users key={item._id} index={index} props={item} />
             ))}
           </>
         )}

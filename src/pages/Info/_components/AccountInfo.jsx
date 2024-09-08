@@ -14,7 +14,7 @@ export default function AccountInfo({ user }) {
   return (
     <div className="w-full bg-secondary p-2 relative my-20 rounded-[10px] select-none">
       <img
-        className="w-[85px] h-[85px] rounded-full absolute -top-11 left-1/2 -translate-x-1/2"
+        className="w-[85px] h-[85px] rounded-full absolute -top-11 left-1/2 -translate-x-1/2 border-[4px] border-secondary border-b-primary"
         src={user.profile ? user.profile : "/default_profile.jpg"}
         alt="profile"
       />

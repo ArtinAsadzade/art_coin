@@ -8,7 +8,10 @@ export default function Users({ props, index }) {
           <h3>{props.name ? props.name : "user_" + props._id.slice(0, 7)}</h3>
           {/* {props.email === email && <div className="bg-primary text-secondary px-[4px] py-[2px] text-[10px] rounded-md flex items-center">YOU</div>} */}
         </div>
-        <p className="font-bold">{formatNumber(props.coins)}</p>
+        <div className="font-bold flex items-center gap-1">
+          <p className="text-[16px]">{formatNumber(props.coins)}</p>
+          <img src="/logo.webp" className="w-[19px] h-[19px] object-cover" alt="Art Coin Logo" />
+        </div>
       </div>
       <p className="font-bold text-xl">{index + 1} </p>
     </div>

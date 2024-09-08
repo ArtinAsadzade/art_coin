@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavContainer from "../components/Nav/NavContainer";
 import Ranking from "../components/RanksPage/Ranking.jsx/Ranking";
 import RanksPageSlider from "../components/RanksPage/Ranks/RanksPageSlider";
@@ -7,10 +7,13 @@ import useFetch from "../hooks/useFetch";
 import Loading from "../components/Loading";
 import Toast from "../components/Toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { UserAllDataContext } from "../context/UserAllDataContext";
 
 export default function RanksPage() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const { data, setData, loading, setLoading } = useFetch();
+
+  const { userId } = useContext(UserAllDataContext);
 
   useEffect(() => {
     setLoading(true);
@@ -38,7 +41,7 @@ export default function RanksPage() {
         <div className="w-full h-svh flex flex-col">
           <div className="flex-1 flex flex-col gap-5 items-center px-3 relative   bg-primary pb-[100px]">
             <RanksPageSlider />
-            <Ranking data={data} />
+            <Ranking data={data} userId={userId} />
             <NavContainer />
           </div>
         </div>

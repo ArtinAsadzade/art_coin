@@ -18,7 +18,7 @@ export default function PrivateRoute() {
 
   const { loading, setLoading } = useFetch();
 
-  const { setAllTokens, setTokenLimit, setPerTap } = useContext(UserAllDataContext);
+  const { setAllTokens, setTokenLimit, setPerTap, setUserId } = useContext(UserAllDataContext);
 
   const disable = value.name.length > 3 && value.name.length < 18;
 
@@ -42,6 +42,7 @@ export default function PrivateRoute() {
           setAllTokens(+res.data.coins);
           setTokenLimit(+res.data.coinLimit);
           setPerTap(+res.data.perTap);
+          setUserId(res.data._id);
           !res.data.name && setOpenModal(true);
         } else {
           navigate(coming_soon_url);
@@ -50,7 +51,7 @@ export default function PrivateRoute() {
     } else {
       navigate(login_url);
     }
-  }, [navigate, setAllTokens, setPerTap, setTokenLimit, token]);
+  }, [navigate, setAllTokens, setPerTap, setTokenLimit, setUserId, token]);
 
   const setUserNameHandler = useCallback(() => {
     setLoading(true);

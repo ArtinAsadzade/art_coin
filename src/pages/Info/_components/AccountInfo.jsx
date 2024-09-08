@@ -47,6 +47,20 @@ export default function AccountInfo({ user }) {
               {formatNumber(user.invitedUsers.length)}
             </div>
           </div>
+          <div className="w-full flex justify-between gap-4">
+            {user.inviter && (
+              <div className="bg-primary rounded-[5px] w-full">
+                <p>You Invited By</p>
+                {/* {nameTranslator(user.inviter)} */}
+              </div>
+            )}
+            {user.name && (
+              <div className="bg-primary rounded-[5px] w-full">
+                <p>Your Name</p>
+                {user.name}
+              </div>
+            )}
+          </div>
           <div>
             <p className="text-primary text-left">Invite Link :</p>
             <div className="relative bg-primary rounded-[5px] w-full p-1">

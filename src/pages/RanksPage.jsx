@@ -13,7 +13,7 @@ export default function RanksPage() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const { data, setData, loading, setLoading } = useFetch();
 
-  const { userId } = useContext(UserAllDataContext);
+  const { user } = useContext(UserAllDataContext);
 
   useEffect(() => {
     setLoading(true);
@@ -41,7 +41,7 @@ export default function RanksPage() {
         <div className="w-full h-svh flex flex-col">
           <div className="flex-1 flex flex-col gap-5 items-center px-3 relative   bg-primary pb-[100px]">
             <RanksPageSlider />
-            <Ranking data={data} userId={userId} />
+            <Ranking data={data} userId={user._id} />
             <NavContainer />
           </div>
         </div>

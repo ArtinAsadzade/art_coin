@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 export const UserAllDataContext = createContext();
 
 export const UserAllDataProvider = ({ children }) => {
+  const [user, setUser] = useState();
   const [allTokens, setAllTokens] = useState(0);
   const [tokens, setTokens] = useState(0);
   const [tokenLimit, setTokenLimit] = useState(0);
@@ -11,7 +12,7 @@ export const UserAllDataProvider = ({ children }) => {
 
   return (
     <UserAllDataContext.Provider
-      value={{ allTokens, setAllTokens, tokens, setTokens, tokenLimit, setTokenLimit, perTap, setPerTap, userId, setUserId }}
+      value={{ allTokens, setAllTokens, tokens, setTokens, tokenLimit, setTokenLimit, perTap, setPerTap, userId, setUserId, user, setUser }}
     >
       {children}
     </UserAllDataContext.Provider>

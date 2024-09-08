@@ -1,5 +1,6 @@
 import ComingSoon from "../pages/ComingSoon";
 import Home from "../pages/Home";
+import Info from "../pages/Info/Info";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
 import RanksPage from "../pages/RanksPage";
@@ -18,7 +19,7 @@ export const routers = [
       { path: "status", element: <Status /> },
       { path: "boost", element: <Home /> },
       { path: "task", element: <Home /> },
-      { path: "info", element: <Home /> },
+      { path: "info", element: <Info /> },
       { path: "ranks", element: <RanksPage /> },
     ],
   },

@@ -8,19 +8,22 @@ import Loading from "../components/Loading";
 import Toast from "../components/Toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { UserAllDataContext } from "../context/UserAllDataContext";
+import { decrypted } from "../utils";
 
 export default function RanksPage() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
-  const { data, setData, loading, setLoading } = useFetch();
+  const [ranking, setRanking] = useState(1);
 
+  const { data, setData, loading, setLoading } = useFetch();
   const { user } = useContext(UserAllDataContext);
+  const token = decrypted("token");
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${import.meta.env.VITE_API}api/users`)
+      .get(`${import.meta.env.VITE_API}api/users`, { headers: { Authorization: token } })
       .then((res) => {
-        (res.data && setLoading(false)) || setData(res.data.sort((a, b) => b.coins - a.coins));
+        (res.data && setLoading(false)) || setData(res.data);
       })
       .catch((err) => {
         (err && setLoading(false)) ||
@@ -30,7 +33,7 @@ export default function RanksPage() {
             show: true,
           });
       });
-  }, [setData, setLoading]);
+  }, [setData, setLoading, token]);
 
   return (
     <>
@@ -41,7 +44,12 @@ export default function RanksPage() {
         <div className="w-full h-svh flex flex-col">
           <div className="flex-1 flex flex-col gap-5 items-center px-3 relative   bg-primary pb-[100px]">
             <RanksPageSlider />
-            <Ranking data={data} userId={user._id} />
+            <Ranking
+              data={ranking === 1 ? data?.sort((a, b) => b.coins - a.coins) : data?.sort((a, b) => b.invitedUsers.length - a.invitedUsers.length)}
+              userId={user._id}
+              ranking={ranking}
+              setRanking={setRanking}
+            />
             <NavContainer />
           </div>
         </div>

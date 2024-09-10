@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     bridge.send("VKWebAppInit");
     if (token) {
-      axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }).catch(() => {
+      axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }, { headers: { Authorization: token } }).catch(() => {
         navigate(login_url);
         localStorage.clear();
       });

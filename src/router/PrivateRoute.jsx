@@ -36,7 +36,7 @@ export default function PrivateRoute() {
 
   useEffect(() => {
     if (token) {
-      axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }).then((res) => {
+      axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }, { headers: { Authorization: token } }).then((res) => {
         if (+res.data.perm > 0) {
           setIsAuthenticated(true);
           setAllTokens(+res.data.coins);
@@ -56,7 +56,7 @@ export default function PrivateRoute() {
   const setUserNameHandler = useCallback(() => {
     setLoading(true);
     axios
-      .put(`${import.meta.env.VITE_API}api/users/`, { email: token, name: value.name })
+      .put(`${import.meta.env.VITE_API}api/users/`, { email: token, name: value.name }, { headers: { Authorization: token } })
       .then((res) => {
         res && setLoading(false);
         res && setOpenModal(false);

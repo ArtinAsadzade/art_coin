@@ -51,7 +51,7 @@ export default function Login() {
     const pasteData = e.clipboardData.getData("text");
     if (/^\d{4}$/.test(pasteData)) {
       setValue((prevValue) => {
-        const newPin = pasteData.split("").map((digit, index) => digit);
+        const newPin = pasteData.split("").map((digit) => digit);
         return {
           ...prevValue,
           pin: newPin,

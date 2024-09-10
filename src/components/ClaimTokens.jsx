@@ -15,8 +15,9 @@ export default function ClaimTokens() {
 
   const updateUserTokensHandler = useCallback(() => {
     setLoading(true);
+
     axios
-      .put(`${import.meta.env.VITE_API}api/users`, { email, coins: tokens + allTokens, coinLimit: tokenLimit })
+      .put(`${import.meta.env.VITE_API}api/users`, { email, coins: tokens + allTokens, coinLimit: tokenLimit }, { headers: { Authorization: email } })
       .then((res) => {
         setLoading(false);
         setTokens(0);

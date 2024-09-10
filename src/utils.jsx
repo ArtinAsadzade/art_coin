@@ -1,7 +1,6 @@
 import { ranksData } from "./data/Data";
 import CryptoJS from "crypto-js";
 import sha256 from "crypto-js/sha256";
-import { useState } from "react";
 
 export const encrypted = (data, key) => {
   const jsonData = JSON.stringify(data);
@@ -79,3 +78,12 @@ export const nameTranslator = (input) => {
   return input;
 };
 
+export const getGregorianDateFromISO = (isoDateString) => {
+  const date = new Date(isoDateString);
+
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};

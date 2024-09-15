@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import Info from "../pages/Info/Info";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
-import RanksPage from "../pages/RanksPage";
+import RanksPage from "../pages/Rankings/RanksPage";
 import Status from "../pages/Status";
 import PrivateRoute from "./PrivateRoute";
 import { coming_soon_url, login_url } from "./Urls";

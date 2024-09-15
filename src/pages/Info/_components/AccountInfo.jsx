@@ -51,16 +51,16 @@ export default function AccountInfo({ user }) {
             {user.inviter && (
               <div className="w-full">
                 <p className="text-primary text-left">You Invited By :</p>
-                <div className="relative bg-primary rounded-[5px] w-full p-2">
-                  <p className="line-clamp-2">{user.inviter}</p>
+                <div className="relative bg-primary rounded-[5px] w-full p-2 py-3">
+                  <p className="line-clamp-2 text-[17px]">{user.inviter}</p>
                 </div>
               </div>
             )}
             {user.name && (
               <div className="w-full">
                 <p className="text-primary text-left">Your Name :</p>
-                <div className="relative bg-primary rounded-[5px] w-full p-2">
-                  <p className="line-clamp-2">{user.name}</p>
+                <div className="relative bg-primary rounded-[5px] w-full p-2 py-3">
+                  <p className="line-clamp-2 text-[17px]">{user.name}</p>
                 </div>
               </div>
             )}

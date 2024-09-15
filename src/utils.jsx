@@ -57,16 +57,18 @@ export const logOutHandler = () => {
 };
 
 export const formatNumber = (number) => {
-  if (number >= 1e12) {
-    return `${Math.floor(number / 1e12)}.${Math.floor((number % 1e12) / 1e9)}t`;
-  } else if (number >= 1e9) {
-    return `${Math.floor(number / 1e9)}.${Math.floor((number % 1e9) / 1e6)}b`;
-  } else if (number >= 1e6) {
-    return `${Math.floor(number / 1e6)}.${Math.floor((number % 1e6) / 1e3)}m`;
-  } else if (number >= 1e3) {
-    return `${Math.floor(number / 1e3)}.${Math.floor(number % 1e3)}k`;
-  } else {
-    return number.toString();
+  if (number) {
+    if (+number >= 1e12) {
+      return `${Math.floor(+number / 1e12)}.${Math.floor((+number % 1e12) / 1e9)}t`;
+    } else if (+number >= 1e9) {
+      return `${Math.floor(+number / 1e9)}.${Math.floor((+number % 1e9) / 1e6)}b`;
+    } else if (+number >= 1e6) {
+      return `${Math.floor(+number / 1e6)}.${Math.floor((+number % 1e6) / 1e3)}m`;
+    } else if (+number >= 1e3) {
+      return `${Math.floor(+number / 1e3)}.${Math.floor(+number % 1e3)}k`;
+    } else {
+      return number.toString();
+    }
   }
 };
 

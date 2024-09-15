@@ -2,7 +2,6 @@ import { UsersIcon } from "@heroicons/react/24/outline";
 import { formatNumber } from "../../../utils";
 
 export default function Users({ props, index }) {
-  console.log(props);
   return (
     <div className="w-full flex justify-between bg-secondary text-primary px-3 py-1 rounded-lg items-center">
       <div className="flex flex-col items-start font-extrabold">

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import NavContainer from "../components/Nav/NavContainer";
-import Ranking from "../components/RanksPage/Ranking.jsx/Ranking";
+import Ranking from "../components/RanksPage/Ranking/Ranking";
 import RanksPageSlider from "../components/RanksPage/Ranks/RanksPageSlider";
 import axios from "axios";
 import useFetch from "../hooks/useFetch";
@@ -42,7 +42,7 @@ export default function RanksPage() {
         <Loading />
       ) : (
         <div className="w-full h-svh flex flex-col">
-          <div className="flex-1 flex flex-col gap-5 items-center px-3 relative   bg-primary pb-[100px]">
+          <div className="flex-1 flex flex-col gap-5 items-center px-3 relative bg-primary pb-[100px]">
             <RanksPageSlider />
             <Ranking
               data={ranking === 1 ? data?.sort((a, b) => b.coins - a.coins) : data?.sort((a, b) => b.invitedUsers.length - a.invitedUsers.length)}

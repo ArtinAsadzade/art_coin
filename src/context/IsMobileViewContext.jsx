@@ -7,6 +7,7 @@ export const IsMobileViewContext = createContext();
 
 export default function IsMobileViewProvider({ children }) {
   const [isMobile, setIsMobile] = useState(detectMobile);
+
   const [bannedOSList] = useState(bannedOSListData);
 
   useEffect(() => {

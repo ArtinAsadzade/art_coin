@@ -1,20 +1,22 @@
 import { useContext, useEffect, useState } from "react";
-import NavContainer from "../components/Nav/NavContainer";
-import Ranking from "../components/RanksPage/Ranking.jsx/Ranking";
-import RanksPageSlider from "../components/RanksPage/Ranks/RanksPageSlider";
 import axios from "axios";
-import useFetch from "../hooks/useFetch";
-import Loading from "../components/Loading";
-import Toast from "../components/Toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { UserAllDataContext } from "../context/UserAllDataContext";
-import { decrypted } from "../utils";
+import RanksSlider from "./_components/AllRanks/RanksSlider";
+import Ranking from "./_components/Ranking/Ranking";
+import NavContainer from "../../components/Nav/NavContainer";
+import { useFetcher } from "react-router-dom";
+import Loading from "../../components/Loading";
+import Toast from "../../components/Toast";
+import { UserAllDataContext } from "../../context/UserAllDataContext";
+import { decrypted } from "../../utils";
+import useFetch from "../../hooks/useFetch";
 
-export default function RanksPage() {
+export default function RankPage() {
   const [toastData, setToastData] = useState({ msg: "", icon: null, show: false });
   const [ranking, setRanking] = useState(1);
 
   const { data, setData, loading, setLoading } = useFetch();
+
   const { user } = useContext(UserAllDataContext);
   const token = decrypted("token");
 
@@ -43,7 +45,7 @@ export default function RanksPage() {
       ) : (
         <div className="w-full h-svh flex flex-col">
           <div className="flex-1 flex flex-col gap-5 items-center px-3 relative   bg-primary pb-[100px]">
-            <RanksPageSlider />
+            <RanksSlider />
             <Ranking
               data={ranking === 1 ? data?.sort((a, b) => b.coins - a.coins) : data?.sort((a, b) => b.invitedUsers.length - a.invitedUsers.length)}
               userId={user._id}

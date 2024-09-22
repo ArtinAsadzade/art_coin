@@ -1,7 +1,8 @@
 import { UsersIcon } from "@heroicons/react/24/outline";
-import { formatNumber } from "../../../utils";
+import { formatNumber } from "../../../../utils";
 
 export default function Users({ props, index }) {
+  console.log(props.invitedUsers);
   return (
     <div className="w-full flex justify-between bg-secondary text-primary px-3 py-1 rounded-lg items-center">
       <div className="flex flex-col items-start font-extrabold">
@@ -16,7 +17,7 @@ export default function Users({ props, index }) {
           </div>
           |
           <div className="flex items-center gap-1">
-            <p className="text-[16px]">{formatNumber(props.invitedUsers.length)}</p>
+            <p className="text-[16px]">{props.invitedUsers.length > 0 ? formatNumber(props.invitedUsers.length) : 0}</p>
             <UsersIcon className="w-[18px]" />
           </div>
         </div>

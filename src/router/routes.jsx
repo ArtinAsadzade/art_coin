@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import Info from "../pages/Info/Info";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
-import RanksPage from "../pages/Rankings/RanksPage";
+import RankPage from "../pages/Rankings/RankPage";
 import Status from "../pages/Status";
 import PrivateRoute from "./PrivateRoute";
 import { coming_soon_url, login_url } from "./Urls";
@@ -20,7 +20,7 @@ export const routers = [
       { path: "boost", element: <Home /> },
       { path: "task", element: <Home /> },
       { path: "info", element: <Info /> },
-      { path: "ranks", element: <RanksPage /> },
+      { path: "ranks", element: <RankPage /> },
     ],
   },
   { path: "*", element: <PageNotFound /> },

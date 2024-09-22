@@ -73,11 +73,13 @@ export const formatNumber = (number) => {
 };
 
 export const nameTranslator = (input) => {
-  const atIndex = input.indexOf("@");
-  if (atIndex !== -1) {
-    return input.substring(0, atIndex);
+  if (input) {
+    const atIndex = input.indexOf("@");
+    if (atIndex !== -1) {
+      return input.substring(0, atIndex);
+    }
+    return input;
   }
-  return input;
 };
 
 export const getGregorianDateFromISO = (isoDateString) => {
@@ -87,5 +89,5 @@ export const getGregorianDateFromISO = (isoDateString) => {
   const month = String(date.getUTCMonth() + 1).padStart(2, "0");
   const day = String(date.getUTCDate()).padStart(2, "0");
 
-  return `${year}-${month}-${day}`;
+  return `${year}/${month}/${day}`;
 };

@@ -1,10 +1,13 @@
-import { useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { home_url, login_url } from "../router/Urls";
 import { decrypted, nameTranslator } from "../utils";
 
 export default function ComingSoon() {
+  const navigate = useNavigate();
+
   const token = decrypted("token");
+
   const handleClick = useCallback((e) => {
     const image = e.currentTarget;
 
@@ -13,6 +16,12 @@ export default function ComingSoon() {
       image.classList.remove("animate-shake");
     }, 100);
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      navigate(home_url);
+    }
+  }, [navigate, token]);
 
   return (
     <div className="w-full h-svh flex flex-col">

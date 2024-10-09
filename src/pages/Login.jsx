@@ -6,7 +6,7 @@ import Toast from "../components/Toast";
 import { ArrowLeftCircleIcon, CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import CustomBtn from "../helper/CustomBtn";
 import { Navigate } from "react-router-dom";
-import { coming_soon_url } from "../router/Urls";
+import { home_url } from "../router/Urls";
 
 export default function Login() {
   const [step, setStep] = useState(1);
@@ -130,7 +130,7 @@ export default function Login() {
     <>
       <Toast icon={toastData.icon} msg={toastData.msg} show={toastData.show} setShow={setToastData} />
       {token ? (
-        <Navigate to={coming_soon_url} />
+        <Navigate to={home_url} />
       ) : (
         <div className="w-full bg-primary h-svh flex justify-center items-center px-3">
           <div className="w-full bg-secondary rounded-lg shadow relative">

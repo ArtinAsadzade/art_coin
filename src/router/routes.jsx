@@ -1,27 +1,18 @@
-import ComingSoon from "../pages/ComingSoon";
 import Home from "../pages/Home";
 import Info from "../pages/Info/Info";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
 import RankPage from "../pages/Rankings/RankPage";
 import Status from "../pages/Status";
-import PrivateRoute from "./PrivateRoute";
-import { coming_soon_url, login_url } from "./Urls";
+import { boost_url, home_url, info_url, login_url, ranks_url, status_url, task_url } from "./Urls";
 
 export const routers = [
-  { path: coming_soon_url, element: <ComingSoon /> },
   { path: login_url, element: <Login /> },
-  {
-    path: "/",
-    element: <PrivateRoute />,
-    children: [
-      { path: "home", element: <Home /> },
-      { path: "status", element: <Status /> },
-      { path: "boost", element: <Home /> },
-      { path: "task", element: <Home /> },
-      { path: "info", element: <Info /> },
-      { path: "ranks", element: <RankPage /> },
-    ],
-  },
+  { path: home_url, element: <Home /> },
+  { path: status_url, element: <Status /> },
+  { path: boost_url, element: <Home /> },
+  { path: task_url, element: <Home /> },
+  { path: info_url, element: <Info /> },
+  { path: ranks_url, element: <RankPage /> },
   { path: "*", element: <PageNotFound /> },
 ];

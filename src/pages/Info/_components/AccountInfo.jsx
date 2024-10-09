@@ -4,14 +4,14 @@ import ModalContainer from "../../../components/ModalContainer";
 import CustomBtn from "../../../helper/CustomBtn";
 import useFetch from "../../../hooks/useFetch";
 import axios from "axios";
+import NavContainer from "../../../components/Nav/NavContainer";
 
 export default function AccountInfo({ user, getUserInfo }) {
   const [copied, setCopied] = useState(false);
+  const [setName, setSetName] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [value, setValue] = useState({ name: "" });
   const { loading, setLoading } = useFetch();
-
-  console.log(user);
 
   const token = decrypted("token");
 
@@ -26,6 +26,7 @@ export default function AccountInfo({ user, getUserInfo }) {
 
   const openModalHandler = useCallback(() => {
     setOpenModal(true);
+    setTimeout(() => setSetName(false), 2000);
   }, []);
 
   const handleValueChanges = useCallback((e) => {
@@ -122,11 +123,11 @@ export default function AccountInfo({ user, getUserInfo }) {
               <div className="w-full">
                 <p className="text-primary text-left">Your Name :</p>
                 <div className="relative bg-primary rounded-[5px] w-full p-2 py-3">
-                  <p className="line-clamp-2 text-[17px]">{user?.name ? user?.name : "null"}</p>
+                  <p className="line-clamp-2 text-[17px]">{user?.name ? user?.name : "NULL"}</p>
                   {!user?.name && (
                     <div
                       className={`absolute inset-0 flex items-center justify-center text-white text-lg font-bold transition-opacity duration-300 ${
-                        copied ? "opacity-0" : "opacity-100"
+                        setName ? "opacity-0" : "opacity-100"
                       } bg-primary bg-opacity-70 rounded-[5px]`}
                     >
                       <button onClick={openModalHandler} className="w-full text-secondary rounded">
@@ -155,6 +156,7 @@ export default function AccountInfo({ user, getUserInfo }) {
           </div>
         </div>
       </div>
+      <NavContainer />
     </>
   );
 }

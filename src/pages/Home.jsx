@@ -1,5 +1,6 @@
 import ClaimTokens from "../components/ClaimTokens";
 import Coin from "../components/Coin";
+import NavContainer from "../components/Nav/NavContainer";
 import StatusBar from "../components/StatusBar";
 import Tokens from "../components/Tokens";
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
           <StatusBar />
           <Coin />
           <ClaimTokens />
+          <NavContainer />
         </div>
       </div>
     </>

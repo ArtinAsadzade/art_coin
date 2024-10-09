@@ -18,20 +18,26 @@ export default function PrivateRoute() {
 
   useEffect(() => {
     if (token) {
-      axios.post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }, { headers: { Authorization: token } }).then((res) => {
-        if (+res.data.perm > 0) {
-          setIsAuthenticated(true);
-          setAllTokens(+res.data.coins);
-          setTokenLimit(+res.data.coinLimit);
-          setPerTap(+res.data.perTap);
-          setUser(res.data);
-        } else {
-          navigate(coming_soon_url);
+      axios
+        .post(`${import.meta.env.VITE_API}api/users/by-email`, { email: token }, { headers: { Authorization: token } })
+        .then((res) => {
+          if (+res.data.perm > 0) {
+            setIsAuthenticated(true);
+            setAllTokens(+res.data.coins);
+            setTokenLimit(+res.data.coinLimit);
+            setPerTap(+res.data.perTap);
+            setUser(res.data);
+          } else {
+            navigate(coming_soon_url);
+          }
+        })
+        .catch((err) => {
+          navigate(login_url);
           localStorage.clear();
-        }
-      });
+        });
     } else {
       navigate(login_url);
+      localStorage.clear();
     }
   }, [navigate, setAllTokens, setPerTap, setTokenLimit, setUser, token]);
 

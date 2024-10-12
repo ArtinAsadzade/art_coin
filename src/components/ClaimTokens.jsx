@@ -11,7 +11,7 @@ export default function ClaimTokens() {
   const { allTokens, setAllTokens, tokens, setTokens, tokenLimit, perTap } = useContext(UserAllDataContext);
   const email = decrypted("token");
 
-  const disable = tokens >= 30 * perTap || tokenLimit === 0;
+  const disable = tokens >= 15 * perTap || tokenLimit === 0;
 
   const updateUserTokensHandler = useCallback(() => {
     setLoading(true);
@@ -31,7 +31,7 @@ export default function ClaimTokens() {
       <div className="w-full bg-secondary rounded-md flex items-center justify-between px-3 py-2">
         <div className="py-2 text-center rounded-lg text-2xl text-primary font-bold flex items-center justify-center gap-1">
           <img className="w-[30px] object-cover" src="/logo.webp" alt="" />
-          <p>{formatNumber(tokens)}</p>
+          <p>{formatNumber(tokens) ? formatNumber(tokens) : 0}</p>
         </div>
         <CustomBtn
           className="bg-primary text-secondary font-bold w-1/3 rounded-md py-3"

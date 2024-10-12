@@ -1,11 +1,11 @@
 import { FireIcon, HomeIcon, PresentationChartBarIcon, RectangleGroupIcon, UserGroupIcon } from "@heroicons/react/24/outline";
-import { home_url, info_url, status_url } from "../router/Urls";
+import { home_url, info_url, status_url, task_url } from "../router/Urls";
 
 export const bannedOSListData = ["Mac OS", "Linux", "Windows"];
 
 export const navData = [
   { id: 1, title: "Info", icon: <UserGroupIcon className="w-7" />, link: info_url },
-  { id: 2, title: "Task", icon: <RectangleGroupIcon className="w-7" />, link: "" },
+  { id: 2, title: "Task", icon: <RectangleGroupIcon className="w-7" />, link: task_url },
   { id: 3, title: "Home", icon: <HomeIcon className="w-7" />, link: home_url },
   { id: 4, title: "Boost", icon: <FireIcon className="w-7" />, link: "" },
   { id: 5, title: "Status", icon: <PresentationChartBarIcon className="w-7" />, link: status_url },
@@ -28,4 +28,11 @@ export const socialMedia = [
   { id: 3, title: "Telegram Community", link: "", logo: "/social_logo/telegram_logo.png" },
   { id: 1, title: "Instagram", link: "", logo: "/social_logo/Instagram_logo.jpg" },
   { id: 2, title: "Discord", link: "", logo: "/social_logo/discord_logo.jpg" },
+];
+
+export const categoryData = [
+  { id: 1, title: "Watch Video" },
+  { id: 2, title: "Follow" },
+  { id: 3, title: "Referrals" },
+  { id: 4, title: "Rank" },
 ];

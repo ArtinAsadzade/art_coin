@@ -36,3 +36,10 @@ export const categoryData = [
   { id: 3, title: "Referrals" },
   { id: 4, title: "Rank" },
 ];
+
+export const tasksCategory = [
+  { id: 1, title: "Socials" },
+  { id: 2, title: "Academy" },
+  { id: 3, title: "Rank" },
+  { id: 4, title: "Frens" },
+];

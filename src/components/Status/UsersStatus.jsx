@@ -6,8 +6,8 @@ export default function UsersStatus({ data }) {
       <div className="w-full flex gap-2 flex-col">
         <div className="w-full flex gap-2 justify-evenly items-center">
           <div className="w-full bg-secondary text-primary p-2 rounded-md">
-            <p className="text-lg">Active Users:</p>
-            <h2 className="text-2xl">{formatNumber(data?.usersOnlineInLastWeek)}</h2>
+            <p className="text-lg">All Users:</p>
+            <h2 className="text-2xl">{formatNumber(data?.totalUsers)}</h2>
           </div>
           <div className="w-full bg-secondary text-primary p-2 rounded-md">
             <p className="text-lg">Online Users:</p>

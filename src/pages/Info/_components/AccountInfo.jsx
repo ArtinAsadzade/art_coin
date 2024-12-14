@@ -123,7 +123,7 @@ export default function AccountInfo({ user, getUserInfo }) {
               <div className="w-full">
                 <p className="text-primary text-left">Your Name :</p>
                 <div className="relative bg-primary rounded-[5px] w-full p-2 py-3">
-                  <p className="line-clamp-2 text-[17px]">{user?.name ? user?.name : "NULL"}</p>
+                  <p className="line-clamp-2 text-[17px]">{user?.name ? user?.name : "Set Your Name"}</p>
                   {!user?.name && (
                     <div
                       className={`absolute inset-0 flex items-center justify-center text-white text-lg font-bold transition-opacity duration-300 ${

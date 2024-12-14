@@ -48,7 +48,7 @@ export default function RankPage() {
             <RanksSlider />
             <Ranking
               data={ranking === 1 ? data?.sort((a, b) => b.coins - a.coins) : data?.sort((a, b) => b.invitedUsers.length - a.invitedUsers.length)}
-              userId={user._id}
+              userId={user?._id}
               ranking={ranking}
               setRanking={setRanking}
             />

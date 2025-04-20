@@ -37,7 +37,11 @@ function App() {
     bridge.send("VKWebAppInit");
   }, [navigate, setAllTokens, setPerTap, setTokenLimit, setUser, token]);
 
-  return <>{routes}</>;
+  return (
+    <div className="w-full bg-primary flex justify-center">
+      <div className="w-full min-h-svh max-w-[560px] ">{routes}</div>;
+    </div>
+  );
 }
 
 export default App;

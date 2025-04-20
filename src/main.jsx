@@ -9,11 +9,11 @@ import { UserAllDataProvider } from "./context/UserAllDataContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <IsMobileViewProvider>
-        <UserAllDataProvider>
-          <App />
-        </UserAllDataProvider>
-      </IsMobileViewProvider>
+      {/* <IsMobileViewProvider> */}
+      <UserAllDataProvider>
+        <App />
+      </UserAllDataProvider>
+      {/* </IsMobileViewProvider> */}
     </BrowserRouter>
   </React.StrictMode>
 );

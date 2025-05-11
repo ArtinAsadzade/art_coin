@@ -28,8 +28,8 @@ export default function Ranking({ data, userId, ranking, setRanking }) {
         ))}
       </div>
       <div className="w-full flex justify-between">
+        <h5>Info</h5>
         <h5>Ranking</h5>
-        <h5>Total Coins</h5>
       </div>
       <div className="flex flex-col gap-2">
         {data?.slice(0, 100).map((item, index) => (

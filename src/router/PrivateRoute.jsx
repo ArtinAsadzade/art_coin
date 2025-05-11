@@ -7,7 +7,6 @@ export default function PrivateRoute() {
       <div className="w-full min-h-svh max-w-[560px] ">
         <Outlet />
       </div>
-      ;
     </div>
   );
 }

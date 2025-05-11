@@ -43,8 +43,8 @@ export default function RankPage() {
       {loading ? (
         <Loading />
       ) : (
-        <div className="w-full h-svh flex flex-col">
-          <div className="flex-1 flex flex-col gap-5 items-center px-3 relative   bg-primary pb-[100px]">
+        <div className="w-full flex flex-col bg-primary">
+          <div className="flex-1 flex flex-col gap-5 items-center px-3 relative pb-[100px]">
             <RanksSlider />
             <Ranking
               data={ranking === 1 ? data?.sort((a, b) => b.coins - a.coins) : data?.sort((a, b) => b.invitedUsers.length - a.invitedUsers.length)}

@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="w-full bg-primary flex justify-center">
-      <div className="w-full min-h-svh max-w-[560px] ">{routes}</div>;
+      <div className="w-full min-h-svh max-w-[560px] ">{routes}</div>
     </div>
   );
 }

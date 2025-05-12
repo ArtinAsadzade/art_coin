@@ -1,5 +1,5 @@
 import { FireIcon, HomeIcon, PresentationChartBarIcon, RectangleGroupIcon, UserGroupIcon } from "@heroicons/react/24/outline";
-import { home_url, info_url, status_url, task_url } from "../router/Urls";
+import { boost_url, home_url, info_url, status_url, task_url } from "../router/Urls";
 
 export const bannedOSListData = ["Mac OS", "Linux", "Windows"];
 
@@ -7,7 +7,7 @@ export const navData = [
   { id: 1, title: "Info", icon: <UserGroupIcon className="w-7" />, link: info_url },
   { id: 2, title: "Task", icon: <RectangleGroupIcon className="w-7" />, link: task_url },
   { id: 3, title: "Home", icon: <HomeIcon className="w-7" />, link: home_url },
-  { id: 4, title: "Boost", icon: <FireIcon className="w-7" />, link: "" },
+  { id: 4, title: "Boost", icon: <FireIcon className="w-7" />, link: boost_url },
   { id: 5, title: "Status", icon: <PresentationChartBarIcon className="w-7" />, link: status_url },
 ];
 

@@ -1,3 +1,4 @@
+import BoostPage from "../pages/Boost/BoostPage";
 import Home from "../pages/Home";
 import Info from "../pages/Info/Info";
 import Login from "../pages/Login";
@@ -11,7 +12,7 @@ export const routers = [
   { path: login_url, element: <Login /> },
   { path: home_url, element: <Home /> },
   { path: status_url, element: <Status /> },
-  { path: boost_url, element: <Home /> },
+  { path: boost_url, element: <BoostPage /> },
   { path: task_url, element: <TasksPage /> },
   { path: info_url, element: <Info /> },
   { path: ranks_url, element: <RankPage /> },

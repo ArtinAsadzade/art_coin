@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { decrypted, encrypted, getPinAsNumber } from "../utils";
 import axios from "axios";
 import useFetch from "../hooks/useFetch";
@@ -14,13 +14,21 @@ export default function Login() {
   const [value, setValue] = useState({ email: "", pin: ["", "", "", ""] });
   const { loading, setLoading } = useFetch();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const inviteToken = urlParams.get("token");
-
-  const token = decrypted("token");
-
   const inputRefs = useRef([]);
   const pinNumber = getPinAsNumber(value.pin);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenFromURL = urlParams.get("token");
+
+    if (tokenFromURL) {
+      sessionStorage.setItem("inviteToken", tokenFromURL);
+    }
+  }, []);
+
+  // گرفتن token از sessionStorage
+  const inviteToken = sessionStorage.getItem("inviteToken") || "";
+  const token = decrypted("token");
 
   const handleValueChanges = useCallback((e) => {
     const { name, value: inputValue } = e.target;
@@ -92,7 +100,7 @@ export default function Login() {
           setLoading(false);
           setToastData({
             icon: <XMarkIcon className="w-6 text-red-500" />,
-            msg: error.response.data,
+            msg: error.response?.data || "خطایی رخ داد.",
             show: true,
           });
         });
@@ -102,7 +110,7 @@ export default function Login() {
         .post(`${import.meta.env.VITE_API}api/mailer/verify-email`, {
           email: value.email,
           verificationCode: pinNumber,
-          inviteToken: inviteToken ? inviteToken : "",
+          inviteToken: inviteToken,
         })
         .then((response) => {
           if (response) {
@@ -119,7 +127,7 @@ export default function Login() {
           setLoading(false);
           setToastData({
             icon: <XMarkIcon className="w-6 text-red-500" />,
-            msg: error.response.data,
+            msg: error.response?.data || "کد نادرست است.",
             show: true,
           });
         });

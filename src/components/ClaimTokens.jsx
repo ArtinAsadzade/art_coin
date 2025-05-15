@@ -4,14 +4,17 @@ import { decrypted, formatNumber } from "../utils";
 import axios from "axios";
 import useFetch from "../hooks/useFetch";
 import CustomBtn from "../helper/CustomBtn";
+import { levelData } from "../data/Data";
 
 export default function ClaimTokens() {
   const { loading, setLoading } = useFetch();
 
-  const { allTokens, setAllTokens, tokens, setTokens, tokenLimit, perTap } = useContext(UserAllDataContext);
+  const { allTokens, setAllTokens, tokens, setTokens, tokenLimit, level } = useContext(UserAllDataContext);
   const email = decrypted("token");
 
-  const disable = tokens >= 15 * perTap || tokenLimit === 0;
+  const levelinfo = levelData.find(lvl => lvl.level === level)
+
+  const disable = tokens >= 15 * levelinfo?.perTap || tokenLimit === 0;
 
   const updateUserTokensHandler = useCallback(() => {
     setLoading(true);

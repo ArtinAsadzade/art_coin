@@ -43,3 +43,16 @@ export const tasksCategory = [
   { id: 3, title: "Rank" },
   { id: 4, title: "Frens" },
 ];
+
+export const levelData = [
+  {level:1, requiredCoins: 0, requiredInvites: 0, perTap:1},
+  {level:2, requiredCoins: 0, requiredInvites: 0, perTap:3},
+  {level:3, requiredCoins: 0, requiredInvites: 0, perTap:5},
+  {level:4, requiredCoins: 0, requiredInvites: 0, perTap:7},
+  {level:5, requiredCoins: 0, requiredInvites: 0, perTap:10},
+  {level:6, requiredCoins: 0, requiredInvites: 0, perTap:13},
+  {level:7, requiredCoins: 0, requiredInvites: 0, perTap:15},
+  {level:8, requiredCoins: 0, requiredInvites: 0, perTap:18},
+  {level:9, requiredCoins: 0, requiredInvites: 0, perTap:20},
+  {level:10, requiredCoins: 0, requiredInvites: 0, perTap:25},
+]

@@ -5,6 +5,7 @@ import CustomBtn from "../../../helper/CustomBtn";
 import useFetch from "../../../hooks/useFetch";
 import axios from "axios";
 import NavContainer from "../../../components/Nav/NavContainer";
+import { levelData } from "../../../data/Data";
 
 export default function AccountInfo({ user, getUserInfo }) {
   const [copied, setCopied] = useState(false);
@@ -14,6 +15,7 @@ export default function AccountInfo({ user, getUserInfo }) {
   const { loading, setLoading } = useFetch();
 
   const token = decrypted("token");
+  const levelinfo = levelData.find(lvl => lvl.level === user?.level)
 
   const disable = value.name.length > 3 && value.name.length < 18;
 
@@ -88,7 +90,7 @@ export default function AccountInfo({ user, getUserInfo }) {
             <div className="flex justify-between gap-4">
               <div className="bg-primary rounded-[5px] w-1/2">
                 <p>Per Tap</p>
-                {formatNumber(user?.perTap)}
+                {formatNumber(levelinfo?.perTap)}
               </div>
               <div className="bg-primary rounded-[5px] w-1/2">
                 <p>Coin Limit</p>

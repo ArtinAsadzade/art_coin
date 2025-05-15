@@ -7,10 +7,10 @@ export const UserAllDataProvider = ({ children }) => {
   const [allTokens, setAllTokens] = useState(0);
   const [tokens, setTokens] = useState(0);
   const [tokenLimit, setTokenLimit] = useState(0);
-  const [perTap, setPerTap] = useState(0);
+  const [level, setLevel] = useState(0);
 
   return (
-    <UserAllDataContext.Provider value={{ allTokens, setAllTokens, tokens, setTokens, tokenLimit, setTokenLimit, perTap, setPerTap, user, setUser }}>
+    <UserAllDataContext.Provider value={{ allTokens, setAllTokens, tokens, setTokens, tokenLimit, setTokenLimit, level, setLevel, user, setUser }}>
       {children}
     </UserAllDataContext.Provider>
   );

@@ -1,21 +1,24 @@
 import { useCallback, useContext } from "react";
 import { UserAllDataContext } from "../context/UserAllDataContext";
+import { levelData } from "../data/Data";
 
 export default function Coin() {
-  const { setTokens, setTokenLimit, tokenLimit, perTap } = useContext(UserAllDataContext);
+  const { setTokens, setTokenLimit, tokenLimit, level } = useContext(UserAllDataContext);
+  
+    const levelinfo = levelData.find(lvl => lvl.level === level)
 
   const handleClick = useCallback(
     (e) => {
       const image = e.currentTarget;
       const { clientX, clientY } = e;
 
-      if (tokenLimit > 0 && perTap <= tokenLimit) {
-        setTokens((prevTokens) => prevTokens + perTap);
-        setTokenLimit((prev) => prev - perTap);
+      if (tokenLimit > 0 && levelinfo?.perTap <= tokenLimit) {
+        setTokens((prevTokens) => prevTokens + levelinfo?.perTap);
+        setTokenLimit((prev) => prev - levelinfo?.perTap);
 
         const numberElement = document.createElement("div");
         numberElement.className = "absolute text-4xl font-bold   text-secondary text-shadow animate-move-up";
-        numberElement.textContent = `+${perTap}`;
+        numberElement.textContent = `+${levelinfo?.perTap}`;
         numberElement.style.left = `${clientX + 10}px`;
         numberElement.style.top = `${clientY - 20}px`;
 
@@ -31,7 +34,7 @@ export default function Coin() {
         image.classList.remove("animate-shake");
       }, 100);
     },
-    [perTap, setTokenLimit, setTokens, tokenLimit]
+    [levelinfo?.perTap, setTokenLimit, setTokens, tokenLimit]
   );
 
   return (

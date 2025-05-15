@@ -10,7 +10,7 @@ import { home_url, login_url } from "./router/Urls";
 function App() {
   const routes = useRoutes(routers);
 
-  const { setAllTokens, setTokenLimit, setPerTap, setUser } = useContext(UserAllDataContext);
+  const { setAllTokens, setTokenLimit, setLevel, setUser } = useContext(UserAllDataContext);
 
   const navigate = useNavigate();
   const token = decrypted("token");
@@ -22,7 +22,7 @@ function App() {
         .then((res) => {
           setAllTokens(+res.data.coins);
           setTokenLimit(+res.data.coinLimit);
-          setPerTap(+res.data.perTap);
+          setLevel(+res.data.level);
           setUser(res.data);
         })
         .catch(() => {
@@ -35,7 +35,7 @@ function App() {
     }
 
     bridge.send("VKWebAppInit");
-  }, [navigate, setAllTokens, setPerTap, setTokenLimit, setUser, token]);
+  }, [navigate, setAllTokens, setLevel, setTokenLimit, setUser, token]);
 
   return (
     <div className="w-full bg-primary flex justify-center">

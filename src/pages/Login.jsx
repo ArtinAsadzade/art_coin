@@ -26,7 +26,6 @@ export default function Login() {
     }
   }, []);
 
-  // گرفتن token از sessionStorage
   const inviteToken = sessionStorage.getItem("inviteToken") || "";
   const token = decrypted("token");
 

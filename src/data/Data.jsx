@@ -45,14 +45,14 @@ export const tasksCategory = [
 ];
 
 export const levelData = [
-  {level:1, requiredCoins: 0, requiredInvites: 0, perTap:1},
-  {level:2, requiredCoins: 0, requiredInvites: 0, perTap:3},
-  {level:3, requiredCoins: 0, requiredInvites: 0, perTap:5},
-  {level:4, requiredCoins: 0, requiredInvites: 0, perTap:7},
-  {level:5, requiredCoins: 0, requiredInvites: 0, perTap:10},
-  {level:6, requiredCoins: 0, requiredInvites: 0, perTap:13},
-  {level:7, requiredCoins: 0, requiredInvites: 0, perTap:15},
-  {level:8, requiredCoins: 0, requiredInvites: 0, perTap:18},
-  {level:9, requiredCoins: 0, requiredInvites: 0, perTap:20},
-  {level:10, requiredCoins: 0, requiredInvites: 0, perTap:25},
-]
+  { level: 1, requiredCoins: 5000, requiredInvites: 0, perTap: 1 },
+  { level: 2, requiredCoins: 9000, requiredInvites: 0, perTap: 3 },
+  { level: 3, requiredCoins: 16000, requiredInvites: 1, perTap: 5 },
+  { level: 4, requiredCoins: 23000, requiredInvites: 2, perTap: 7 },
+  { level: 5, requiredCoins: 29000, requiredInvites: 4, perTap: 10 },
+  { level: 6, requiredCoins: 36000, requiredInvites: 7, perTap: 13 },
+  { level: 7, requiredCoins: 50000, requiredInvites: 9, perTap: 15 },
+  { level: 8, requiredCoins: 98000, requiredInvites: 12, perTap: 18 },
+  { level: 9, requiredCoins: 200000, requiredInvites: 15, perTap: 20 },
+  { level: 10, requiredCoins: 500000, requiredInvites: 20, perTap: 25 },
+];

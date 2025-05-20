@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Toast from "../../components/Toast";
 import Loading from "../../components/Loading";
 import { decrypted } from "../../utils";
@@ -13,7 +13,7 @@ export default function BoostPage() {
   const { data, setData, loading, setLoading } = useFetch();
   const token = decrypted("token");
 
-  useEffect(() => {
+  const getUserAccountHandler = useCallback(() => {
     setLoading(true);
     axios
       .get(`${import.meta.env.VITE_API}api/users/status`, { headers: { Authorization: token } })
@@ -28,6 +28,10 @@ export default function BoostPage() {
             show: true,
           });
       });
+  }, []);
+
+  useEffect(() => {
+    getUserAccountHandler();
   }, [setData, setLoading, token]);
 
   return (
@@ -38,7 +42,7 @@ export default function BoostPage() {
       ) : (
         <div className="w-full h-svh flex flex-col">
           <div className="flex-1 flex flex-col gap-5 items-center px-3 relative bg-primary pb-[100px]">
-            <BoostComponent />
+            <BoostComponent getUserAccountHandler={getUserAccountHandler} />
             <NavContainer />
           </div>
         </div>

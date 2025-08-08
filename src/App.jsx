@@ -6,7 +6,6 @@ import bridge from "@vkontakte/vk-bridge";
 import { decrypted } from "./utils";
 import axios from "axios";
 import { home_url, login_url } from "./router/Urls";
-
 function App() {
   
   const routes = useRoutes(routers);
